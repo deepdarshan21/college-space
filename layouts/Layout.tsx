@@ -9,7 +9,7 @@ type LayoutProps = {
 };
 
 export const Layout = (props: LayoutProps) => (
-    <div className="w-full antialiased text-gray-700">
+    <div className="w-full min-h-screen pb-8 antialiased text-gray-700 bg-[#F3F2EF]">
         {props.meta}
 
         {/* <Navbar /> */}
