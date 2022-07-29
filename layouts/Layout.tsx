@@ -13,8 +13,8 @@ export const Layout = (props: LayoutProps) => (
         {props.meta}
 
         {/* <Navbar /> */}
-        <div className="flex flex-col min-h-screen mx-auto">
-            <div className="flex flex-1">{props.children}</div>
+        <div className="mx-auto">
+            <div className="">{props.children}</div>
         </div>
         {/* <Footer /> */}
     </div>
