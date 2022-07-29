@@ -62,7 +62,7 @@ export const Landing: React.FC<{}> = () => {
                         {/* <div className="absolute inset-0 md:left-[40%] bg-common-gray" /> */}
                         <span className="hidden md:inline-block relative h-[calc(100vh-200px)] w-full">
                             <Image
-                                src={require("@/images/students.jpg")}
+                                src={require("@/images/students.png")}
                                 alt="Students"
                                 layout="fill"
                                 objectFit="cover"
@@ -71,7 +71,7 @@ export const Landing: React.FC<{}> = () => {
                         </span>
                         <span className="inline-block md:hidden relative max-h-[calc(100vh-200px)] w-full">
                             <Image
-                                src={require("@/images/students.jpg")}
+                                src={require("@/images/students.png")}
                                 alt="Students"
                             />
                         </span>
