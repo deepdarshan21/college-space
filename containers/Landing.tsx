@@ -31,7 +31,7 @@ export const Landing: React.FC<{}> = () => {
 
             <section className="mx-10 mt-[50px] relative w-fit mb-8 overflow-hidden bg-palette-main">
                 <div className="container grid !px-0 md:grid-cols-5">
-                    <div className="relative z-50 grid items-center w-full h-full md:px-8 pb-4 bg-white md:col-span-2 text-common-dark">
+                    <div className="relative z-50 grid items-center w-full h-full md:px-8 pb-4 md:col-span-2 text-common-dark">
                         <div className="max-w-md">
                             <header>
                                 <h1
@@ -60,18 +60,18 @@ export const Landing: React.FC<{}> = () => {
 
                     <div className="md:col-span-3">
                         {/* <div className="absolute inset-0 md:left-[40%] bg-common-gray" /> */}
-                        <span className="hidden md:block relative max-h-[calc(100vh-200px)] w-full inline-block">
+                        <span className="hidden md:inline-block relative h-[calc(100vh-200px)] w-full">
                             <Image
-                                src={require("@/images/students.jpg")}
+                                src={require("@/images/students.png")}
                                 alt="Students"
                                 layout="fill"
                                 objectFit="cover"
                                 objectPosition="10% 10%"
                             />
                         </span>
-                        <span className="block md:hidden relative max-h-[calc(100vh-200px)] w-full inline-block">
+                        <span className="inline-block md:hidden relative max-h-[calc(100vh-200px)] w-full">
                             <Image
-                                src={require("@/images/students.jpg")}
+                                src={require("@/images/students.png")}
                                 alt="Students"
                             />
                         </span>
