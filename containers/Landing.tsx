@@ -31,7 +31,7 @@ export const Landing: React.FC<{}> = () => {
 
             <section className="mx-10 mt-[50px] relative w-fit mb-8 overflow-hidden bg-palette-main">
                 <div className="container grid !px-0 md:grid-cols-5">
-                    <div className="relative z-50 grid items-center w-full h-full md:px-8 pb-4 bg-white md:col-span-2 text-common-dark">
+                    <div className="relative z-50 grid items-center w-full h-full md:px-8 pb-4 md:col-span-2 text-common-dark">
                         <div className="max-w-md">
                             <header>
                                 <h1
