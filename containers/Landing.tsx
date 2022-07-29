@@ -60,13 +60,19 @@ export const Landing: React.FC<{}> = () => {
 
                     <div className="md:col-span-3">
                         {/* <div className="absolute inset-0 md:left-[40%] bg-common-gray" /> */}
-                        <span className="relative h-[calc(100vh-200px)] w-full inline-block">
+                        <span className="hidden md:block relative h-[calc(100vh-200px)] w-full inline-block">
                             <Image
                                 src={require("@/images/students.jpg")}
                                 alt="Students"
                                 layout="fill"
                                 objectFit="cover"
                                 objectPosition="10% 10%"
+                            />
+                        </span>
+                        <span className="block md:hidden relative h-[calc(100vh-200px)] w-full inline-block">
+                            <Image
+                                src={require("@/images/students.jpg")}
+                                alt="Students"
                             />
                         </span>
                     </div>
