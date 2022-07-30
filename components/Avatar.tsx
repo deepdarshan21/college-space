@@ -15,7 +15,7 @@ export const Avatar = (props: AvatarProp) => {
     }, [props.size]);
 
     return (
-        <span className={`flex rounded-full`} style={{height: size, width: size}}>
+        <span className={`flex overflow-hidden rounded-full`} style={{ height: size, width: size }}>
             <Image
                 src={require("@/images/sample-user.jpg")}
                 alt={props.userName ? props.userName : "User"}
