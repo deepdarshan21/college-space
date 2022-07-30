@@ -16,7 +16,7 @@ export const Layout = (props: LayoutProps) => (
         {props.meta}
 
         {props.displayNav && <Navbar />}
-        <div className="mx-auto">
+        <div className="mt-[4rem] pt-8">
             <div className="">{props.children}</div>
         </div>
         {props.displayFooter && <Footer />}
