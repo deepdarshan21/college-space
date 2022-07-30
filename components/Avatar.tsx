@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type AvatarProp = {
     size: number;
@@ -6,13 +7,21 @@ type AvatarProp = {
     userName?: string;
 };
 
-export const Avatar = (props: AvatarProp) => (
-    <span className={`flex w-[${props.size}px] h-[${props.size}px] rounded-full`}>
-        <Image
-            src={require("@/images/sample-user.jpg")}
-            alt={props.userName ? props.userName : "User"}
-            // layout="fixed"
-            objectFit="contain"
-        />
-    </span>
-);
+export const Avatar = (props: AvatarProp) => {
+    const [size, setSize] = useState("28px");
+
+    useEffect(() => {
+        setSize(`${props.size}px`);
+    }, [props.size]);
+
+    return (
+        <span className={`flex rounded-full`} style={{height: size, width: size}}>
+            <Image
+                src={require("@/images/sample-user.jpg")}
+                alt={props.userName ? props.userName : "User"}
+                // layout="fixed"
+                objectFit="contain"
+            />
+        </span>
+    );
+};
