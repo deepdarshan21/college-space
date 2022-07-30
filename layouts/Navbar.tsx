@@ -37,7 +37,7 @@ export const Navbar = () => (
             </div>
 
             <div
-                className="hidden justify-between items-center w-full md:flex md:w-auto"
+                className="hidden justify-between items-center w-full lg:flex md:w-auto"
                 id="navbar-sticky"
             >
                 <ul className="flex flex-col px-4  mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
