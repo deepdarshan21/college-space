@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-// import { Footer } from "@/layout/Footer/Footer";
+import { Footer } from "@/layouts/Footer";
 import { Navbar } from "@/layouts/Navbar";
 
 type LayoutProps = {
@@ -16,6 +16,6 @@ export const Layout = (props: LayoutProps) => (
         <div className="mx-auto">
             <div className="">{props.children}</div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
     </div>
 );
