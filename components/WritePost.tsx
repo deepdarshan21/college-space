@@ -4,7 +4,7 @@ import { ImCross } from "react-icons/im";
 import { Avatar } from "@/components/Avatar";
 import { Popup } from "@/components/Popup";
 
-const WritePost = () => {
+export const WritePost = () => {
     const [popupState, setPopupState] = useState(false);
     const [writePost, setWritePost] = useState("");
 
@@ -57,5 +57,3 @@ const WritePost = () => {
         </div>
     );
 };
-
-export default WritePost;

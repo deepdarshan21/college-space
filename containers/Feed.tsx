@@ -1,6 +1,6 @@
 import React from "react";
 
-import WritePost from "@/components/WritePost";
+import {WritePost} from "@/components/WritePost";
 
 export const FeedContainer: React.FC<{}> = () => {
     return (
