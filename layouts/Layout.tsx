@@ -12,7 +12,7 @@ type LayoutProps = {
 };
 
 export const Layout = (props: LayoutProps) => (
-    <div className="w-full min-h-screen pb-8 antialiased text-gray-700 bg-[#F3F2EF]">
+    <div className="w-full min-h-[calc(100vh-4rem)] pb-8 antialiased text-gray-700 bg-[#F3F2EF]">
         {props.meta}
 
         {props.displayNav && <Navbar />}
