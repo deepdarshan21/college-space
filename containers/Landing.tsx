@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const Landing: React.FC<{}> = () => {
     return (
-        <div className="w-full h-max">
+        <div className="w-full h-max absolute top-0">
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-4">
                     <a href="https://flowbite.com" className="flex items-center">
