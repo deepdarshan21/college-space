@@ -7,16 +7,19 @@ const userSchema = new mongoose.Schema({
         required: [true, "Empty Name Field"],
         match: [/[A-Z][a-z]\s*/, "Invalid Name"],
     },
+    surname: {
+        type: String,
+    },
     email: {
         type: String,
         trim: true,
         lowercase: true,
         unique: true,
         required: [true, "Empty Email Field"],
-        match: [
-            /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/,
-            "Invalid Email",
-        ],
+        // match: [
+        //     /^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$/,
+        //     "Invalid Email",
+        // ],
     },
     username: {
         type: String,
@@ -35,7 +38,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    updateAt: {
+    updatedAt: {
         type: Date,
         required: true,
     },
@@ -44,13 +47,6 @@ const userSchema = new mongoose.Schema({
     },
     dateOfBirth: {
         type: Date,
-    },
-    givenName: {
-        type: String,
-        required: true,
-    },
-    surname: {
-        type: String,
     },
     about: {
         type: String,
