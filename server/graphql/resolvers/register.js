@@ -2,13 +2,20 @@ const User = require("./../../models/users");
 const bcrypt = require("bcrypt");
 
 module.exports = async (args) => {
-    // TODO: Check for duplicates
-    // TODO: Hash the password
-    // TODO: Save the user into database
     const {
         registerInput: { name, surname, username, password, email },
     } = args;
 
+    const isUserNameExits = await User.findOne({ username });
+    if (isUserNameExits) {
+        console.log(isUserNameExits);
+        return new Error("This username is taken");
+    }
+
+    const isEmailExits = await User.findOne({ email });
+    if (isEmailExits) {
+        return new Error("This email already exits");
+    }
 
     const newUser = new User({
         name,
