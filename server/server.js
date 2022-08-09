@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const colors = require("colors");
 const morgan = require("morgan");
 const cors = require("cors");
+const { graphqlHTTP } = require("express-graphql");
 
 const connectDB = require("./config/db");
 
@@ -31,6 +32,19 @@ if (process.env.NODE_ENV === "development") {
 app.get("/", (req, res) => {
     res.send("Up and running");
 });
+
+const schema = require("./graphql/schema");
+
+const root = require("./graphql/resolvers");
+
+app.use(
+    "/graphql",
+    graphqlHTTP({
+        schema: schema,
+        rootValue: root,
+        graphiql: true,
+    })
+);
 
 // const authRoute = require("./routes/auth");
 // const userRoute = require("./routes/user");
