@@ -41,7 +41,6 @@ module.exports = buildSchema(`
   }
   input PostInput {
     body: String!
-    username: String!
   }
   type Mutation {
     register(registerInput: RegisterInput): User!

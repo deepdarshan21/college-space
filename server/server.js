@@ -39,10 +39,16 @@ const root = require("./graphql/resolvers");
 
 app.use(
     "/graphql",
-    graphqlHTTP({
-        schema: schema,
-        rootValue: root,
-        graphiql: true,
+    graphqlHTTP((req, res, graphQLParams) => {
+        return {
+            schema: schema,
+            rootValue: root,
+            graphiql: true,
+            context: {
+                authorization: req.headers.authorization,
+                // whatever else you want
+            },
+        };
     })
 );
 
