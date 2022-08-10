@@ -1,13 +1,17 @@
 const Post = require("./../../models/post");
+const checkAuth = require("./../../utils/checkAuth");
 
-module.exports = async (args) => {
+module.exports = async (args, context) => {
     const {
-        postInput: { body, username },
+        postInput: { body },
     } = args;
+    console.log(context);
+    const user = checkAuth(context);
 
     const newPost = new Post({
         body,
-        username,
+        username:user.username,
+        user: user.id,
         createdAt: new Date(),
         likes: [],
         comments: [],
