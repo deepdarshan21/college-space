@@ -3,6 +3,7 @@ const { buildSchema } = require("graphql");
 module.exports = buildSchema(`
   type Query {
     hello: String
+    getPosts: [Post]
   }
   type User {
     email: String!
