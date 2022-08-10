@@ -7,6 +7,7 @@ module.exports = buildSchema(`
   type User {
     email: String!
     username: String!
+    token: String!
   }
   input RegisterInput {
     name: String!
@@ -15,7 +16,13 @@ module.exports = buildSchema(`
     password: String!
     email: String!
   }
+  input LoginInput {
+    username: String
+    email: String
+    password: String!
+  }
   type Mutation {
     register(registerInput: RegisterInput): User!
+    login(loginInput: LoginInput): User!
   }
 `);
