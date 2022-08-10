@@ -21,8 +21,29 @@ module.exports = buildSchema(`
     email: String
     password: String!
   }
+  type Like {
+    username: String!
+    createdAt: String!
+  }
+  type Comments {
+    body: String!
+    username: String!
+    createdAt: String!
+  }
+  type Post {
+    body: String!
+    username: String!
+    createdAt: String!
+    likes: [Like]
+    comments: [Comments]
+  }
+  input PostInput {
+    body: String!
+    username: String!
+  }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(loginInput: LoginInput): User!
+    addPost(postInput: PostInput): String!
   }
 `);
