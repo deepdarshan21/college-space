@@ -4,6 +4,7 @@ module.exports = buildSchema(`
   type Query {
     hello: String
     getPosts: [Post]
+    getPost(postId: ID!): Post
   }
   type User {
     email: String!
