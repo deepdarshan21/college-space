@@ -30,7 +30,15 @@ export const FeedContainer: React.FC<{}> = () => {
             {loading ? (
                 <h1>Loading posts..</h1>
             ) : (
-                posts && posts.map((post, index) => <Article key={index} body={post.body} />)
+                posts &&
+                posts.map((post, index) => (
+                    <Article
+                        key={index}
+                        body={post.body}
+                        likes={post.likes}
+                        comments={post.comments}
+                    />
+                ))
             )}
         </div>
     );
