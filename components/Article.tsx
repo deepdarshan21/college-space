@@ -3,9 +3,13 @@ import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 
 import { Avatar } from "@/components/Avatar";
 
-type ArticleProps = {};
+type ArticleProps = {
+    body: String;
+};
 
 export const Article = (props: ArticleProps) => {
+    console.log("Article");
+
     const [liked, setLiked] = useState(false);
 
     const handleLike = () => {
@@ -23,11 +27,8 @@ export const Article = (props: ArticleProps) => {
                     </div>
                 </span>
             </div>
-            <div className="text-left text-black">
-                {
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum et libero sed consectetur. Vestibulum at diam sem. Quisque dapibus, justo sit amet consectetur tincidunt, mi nisi maximus mi, sed rhoncus leo erat at mi. Pellentesque molestie vitae metus eu tempus. Etiam nec turpis at odio maximus bibendum. Sed pretium orci vitae volutpat ornare. Duis euismod metus id eros accumsan bibendum. Curabitur lectus justo, porttitor condimentum aliquet suscipit, convallis vitae nisl."
-                }
-            </div>
+            <div className="text-left text-black">{props.body}</div>
+            {console.log("log", props.body)}
             <div>
                 <div className="flex justify-between text-[#706666] text-sm  border-b-2">
                     <span>{"10"} likes</span>
