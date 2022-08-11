@@ -7,7 +7,7 @@ export const Landing: React.FC<{}> = () => {
         <div className="w-full h-max absolute top-0">
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-4">
-                    <a href={process.env.VERCEL_URL} className="flex items-center">
+                    <a href="/" className="flex items-center">
                         <h2 className="self-center text-[24px] md:text-[32px] font-bold whitespace-nowrap">
                             College Space
                         </h2>
