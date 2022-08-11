@@ -9,7 +9,7 @@ import { Avatar } from "@/components/Avatar";
 export const Navbar = () => (
     <nav className="bg-white px-6 sm:px-20 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="https://flowbite.com/" className="flex items-center">
+            <a href={process.env.VERCEL_URL} className="flex items-center">
                 <span className="flex mr-3 self-center h-10 w-10 sm:h-9">
                     <Image
                         src={require("@/images/icon.png")}

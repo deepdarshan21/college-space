@@ -7,7 +7,7 @@ export const Landing: React.FC<{}> = () => {
         <div className="w-full h-max absolute top-0">
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-4">
-                    <a href="https://flowbite.com" className="flex items-center">
+                    <a href={process.env.VERCEL_URL} className="flex items-center">
                         <h2 className="self-center text-[24px] md:text-[32px] font-bold whitespace-nowrap">
                             College Space
                         </h2>
@@ -44,7 +44,7 @@ export const Landing: React.FC<{}> = () => {
                                 <h2 className="mt-4 text-base md:text-base">
                                     A one step destination for students, teachers and even college
                                     passouts to share there achivements and updates. It can be also
-                                    used to share announcement. 
+                                    used to share announcement.
                                 </h2>
                             </header>
 
@@ -70,10 +70,7 @@ export const Landing: React.FC<{}> = () => {
                             />
                         </span>
                         <span className="inline-block md:hidden relative max-h-[calc(100vh-200px)] w-full">
-                            <Image
-                                src={require("@/images/students.png")}
-                                alt="Students"
-                            />
+                            <Image src={require("@/images/students.png")} alt="Students" />
                         </span>
                     </div>
                 </div>
