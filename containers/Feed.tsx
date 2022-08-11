@@ -8,7 +8,7 @@ import { FETCH_POSTS_QUERY } from "@/utils/graphql";
 
 export const FeedContainer: React.FC<{}> = () => {
     const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Array<any>>([]);
 
     useEffect(() => {
         const fetchData = async () => {
