@@ -37,6 +37,7 @@ export const FeedContainer: React.FC<{}> = () => {
                         body={post.body}
                         likes={post.likes}
                         comments={post.comments}
+                        username={post.username}
                     />
                 ))
             )}

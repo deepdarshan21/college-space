@@ -16,3 +16,12 @@ export const FETCH_POSTS_QUERY = `
         }
     }
 `;
+
+export const FETCH_USER_INFO_FOR_POST = (username) => `
+{
+    getUserInfo(username: "${username}"){
+        name
+        surname
+        bio
+    }
+}`;
