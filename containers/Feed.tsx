@@ -12,7 +12,7 @@ export const FeedContainer: React.FC<{}> = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.post("http://localhost:3800/graphql", {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
                 query: FETCH_POSTS_QUERY,
             });
             const result = res.data;
