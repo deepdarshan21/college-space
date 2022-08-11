@@ -17,8 +17,6 @@ export const Article = (props: ArticleProps) => {
     const [bio, setBio] = useState("");
     const [liked, setLiked] = useState(false);
 
-    // console.log(FETCH_USER_INFO_FOR_POST("deep"));
-
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
@@ -26,7 +24,6 @@ export const Article = (props: ArticleProps) => {
             });
             const result = res.data.data;
             if (result) {
-                // console.log(result.data);
                 setBio(result.getUserInfo.bio);
                 setName(result.getUserInfo.name + " " + result.getUserInfo.surname);
             }
