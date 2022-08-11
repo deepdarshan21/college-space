@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema({
     dateOfBirth: {
         type: Date,
     },
+    bio: {
+        type: String,
+    },
     about: {
         type: String,
     },
