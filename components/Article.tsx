@@ -8,8 +8,6 @@ type ArticleProps = {
 };
 
 export const Article = (props: ArticleProps) => {
-    console.log("Article");
-
     const [liked, setLiked] = useState(false);
 
     const handleLike = () => {
