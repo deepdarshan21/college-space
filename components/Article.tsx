@@ -5,6 +5,8 @@ import { Avatar } from "@/components/Avatar";
 
 type ArticleProps = {
     body: String;
+    likes: Array<any>;
+    comments: Array<any>;
 };
 
 export const Article = (props: ArticleProps) => {
@@ -29,8 +31,8 @@ export const Article = (props: ArticleProps) => {
             {console.log("log", props.body)}
             <div>
                 <div className="flex justify-between text-[#706666] text-sm  border-b-2">
-                    <span>{"10"} likes</span>
-                    <span>{"10"} comments</span>
+                    <span>{props.likes.length || "0"} likes</span>
+                    <span>{props.comments.length || "0"} comments</span>
                 </div>
                 <div className="flex justify-between">
                     <span
@@ -47,4 +49,9 @@ export const Article = (props: ArticleProps) => {
             </div>
         </div>
     );
+};
+
+Article.defaultProps = {
+    likes: [],
+    comments: [],
 };
