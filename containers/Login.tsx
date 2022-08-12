@@ -23,7 +23,6 @@ export const Login: React.FC<{}> = () => {
     };
 
     const handleInputChange = (evt: any) => {
-        console.log(evt.target.value);
         setLoginInput({ ...loginInput, [evt.target.name]: evt.target.value });
     };
 
