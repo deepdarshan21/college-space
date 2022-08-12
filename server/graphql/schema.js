@@ -5,11 +5,29 @@ module.exports = buildSchema(`
     hello: String
     getPosts: [Post]
     getPost(postId: ID!): Post
+    getUserInfo(username: String!): UserInfo!
   }
   type User {
     email: String!
     username: String!
     token: String!
+  }
+  type UserInfo {
+    username: String!
+    name: String!
+    surname: String!
+    email: String!
+    createdAt: String!
+    updatedAt: String!
+    branch: String!
+    dateOfBirth: String!
+    bio: String!
+    about: String!
+    role: String!
+    year: String!
+    interest: String!
+    achivement: String!
+    clubs: String!
   }
   input RegisterInput {
     name: String!

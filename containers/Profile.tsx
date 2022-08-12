@@ -52,10 +52,10 @@ export const ProfileContainer: React.FC<{}> = () => {
                 </div>
             </div>
             <div>
-                <Article />
-                <Article />
-                <Article />
-                <Article />
+                {/* <Article /> */}
+                {/* <Article /> */}
+                {/* <Article /> */}
+                {/* <Article /> */}
             </div>
         </div>
     );
