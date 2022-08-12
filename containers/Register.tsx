@@ -44,7 +44,7 @@ export const Register: React.FC<{}> = () => {
                         {/* <div className="absolute inset-0 md:left-[40%] bg-common-gray" /> */}
                         <span className="hidden md:inline-block relative h-[calc(100vh-200px)] w-full">
                             <Image
-                                src={require("@/images/login.png")}
+                                src={require("@/images/register.png")}
                                 alt="Students"
                                 layout="fill"
                                 objectFit="cover"
@@ -52,7 +52,7 @@ export const Register: React.FC<{}> = () => {
                             />
                         </span>
                         <span className="inline-block md:hidden relative max-h-[calc(100vh-200px)] w-full">
-                            <Image src={require("@/images/login.png")} alt="Students" />
+                            <Image src={require("@/images/register.png")} alt="Students" />
                         </span>
                     </div>
 
