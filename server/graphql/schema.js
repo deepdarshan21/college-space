@@ -5,6 +5,7 @@ module.exports = buildSchema(`
     hello: String
     getPosts: [Post]
     getPost(postId: ID!): Post
+    getPostsOfUser(username: String!): [Post]
     getUserInfo(username: String!): UserInfo!
   }
   type User {
