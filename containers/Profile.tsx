@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
-import { FETCH_USER_INFO } from "@/utils/graphql";
+import { FETCH_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
 
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
@@ -42,6 +42,8 @@ export const ProfileContainer: React.FC<{}> = () => {
         achivement: "",
         clubs: "",
     });
+    const [posts, setPosts] = useState<Array<any>>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         try {
@@ -50,7 +52,13 @@ export const ProfileContainer: React.FC<{}> = () => {
                     query: FETCH_USER_INFO(username),
                 });
 
+                const postRes = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                    query: FETCH_POSTS_OF_A_USER(username),
+                });
+
                 setUserInfo(res.data.data.getUserInfo);
+                setPosts(postRes.data.data.getPostsOfUser);
+                setLoading(false);
             };
             fetchData();
         } catch (err) {}
@@ -98,11 +106,22 @@ export const ProfileContainer: React.FC<{}> = () => {
                     </span>
                 </div>
             </div>
-            <div>
-                {/* <Article /> */}
-                {/* <Article /> */}
-                {/* <Article /> */}
-                {/* <Article /> */}
+            <div className="w-full">
+                <h4 className="text-[20px] font-semibold underline mb-6">Recent Posts</h4>
+                {loading ? (
+                    <h1>Loading posts..</h1>
+                ) : (
+                    posts &&
+                    posts.map((post, index) => (
+                        <Article
+                            key={index}
+                            body={post.body}
+                            likes={post.likes}
+                            comments={post.comments}
+                            username={post.username}
+                        />
+                    ))
+                )}
             </div>
         </div>
     );

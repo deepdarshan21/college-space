@@ -72,3 +72,14 @@ export const FETCH_USER_INFO = (username) => `
         clubs
     }
 }`;
+
+export const FETCH_POSTS_OF_A_USER = (username) => `
+{
+    getPostsOfUser(username: "${username}"){
+        body,
+        username,
+        createdAt,
+        likes {username, createdAt},
+        comments {username, body, createdAt}
+    }
+}`;
