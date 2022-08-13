@@ -47,7 +47,7 @@ module.exports = async (args) => {
             );
 
             return {
-                email: isEmailExits.email,
+                username: isEmailExits.username,
                 token,
             };
         } else {
