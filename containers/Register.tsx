@@ -11,7 +11,7 @@ import { REGISTER_USER } from "@/utils/graphql";
 export const Register: React.FC<{}> = () => {
     const router = useRouter();
 
-    const [loginInput, setLoginInput] = useState<{
+    const [registerInput, setRegisterInput] = useState<{
         name: String;
         surname: String;
         email: string;
@@ -28,20 +28,20 @@ export const Register: React.FC<{}> = () => {
     });
 
     const handleInputChange = (evt: any) => {
-        setLoginInput({ ...loginInput, [evt.target.name]: evt.target.value });
+        setRegisterInput({ ...registerInput, [evt.target.name]: evt.target.value });
     };
 
     const handleSignUp = async (evt: any) => {
         evt.preventDefault();
-        if (loginInput.password !== loginInput.confirmPassword) {
+        if (registerInput.password !== registerInput.confirmPassword) {
             alert("Password and confirm password must match");
-            setLoginInput({ ...loginInput, password: "", confirmPassword: "" });
+            setRegisterInput({ ...registerInput, password: "", confirmPassword: "" });
             return;
         }
 
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
-                query: REGISTER_USER(loginInput),
+                query: REGISTER_USER(registerInput),
             });
             alert("Successfully registered");
             router.push("/auth/login");
@@ -110,7 +110,7 @@ export const Register: React.FC<{}> = () => {
                                             type="text"
                                             name="name"
                                             isRequired
-                                            value={loginInput.name}
+                                            value={registerInput.name}
                                             onChange={handleInputChange}
                                         />
                                         <AuthInput
@@ -118,7 +118,7 @@ export const Register: React.FC<{}> = () => {
                                             label="Surname"
                                             type="text"
                                             name="surname"
-                                            value={loginInput.surname}
+                                            value={registerInput.surname}
                                             onChange={handleInputChange}
                                         />
                                     </div>
@@ -128,7 +128,7 @@ export const Register: React.FC<{}> = () => {
                                         type="email"
                                         name="email"
                                         isRequired
-                                        value={loginInput.email}
+                                        value={registerInput.email}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -137,7 +137,7 @@ export const Register: React.FC<{}> = () => {
                                         type="text"
                                         name="username"
                                         isRequired
-                                        value={loginInput.username}
+                                        value={registerInput.username}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -146,7 +146,7 @@ export const Register: React.FC<{}> = () => {
                                         type="password"
                                         name="password"
                                         isRequired
-                                        value={loginInput.password}
+                                        value={registerInput.password}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -155,7 +155,7 @@ export const Register: React.FC<{}> = () => {
                                         type="password"
                                         name="confirmPassword"
                                         isRequired
-                                        value={loginInput.confirmPassword}
+                                        value={registerInput.confirmPassword}
                                         onChange={handleInputChange}
                                     />
                                     <div className="flex flex-wrap gap-8">
