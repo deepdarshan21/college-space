@@ -25,3 +25,17 @@ export const FETCH_USER_INFO_FOR_POST = (username) => `
         bio
     }
 }`;
+
+export const REGISTER_USER = (args) => `
+mutation {
+    register(registerInput: {
+        name: "${args.name}"
+        surname: "${args.surname}"
+        username: "${args.username}"
+        password: "${args.password}"
+        email: "${args.email}"
+    }){
+        username
+        email
+    }
+}`;
