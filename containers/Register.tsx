@@ -102,7 +102,7 @@ export const Register: React.FC<{}> = () => {
                             </header>
 
                             <div className="flex w-full mx-auto mt-8">
-                                <form className="w-full">
+                                <form className="w-full" onSubmit={handleSignUp}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
                                         <AuthInput
                                             icon={<AiOutlineUser size={24} />}
@@ -160,8 +160,9 @@ export const Register: React.FC<{}> = () => {
                                     />
                                     <div className="flex flex-wrap gap-8">
                                         <button
+                                            type="submit"
                                             className="grid px-4 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main"
-                                            onClick={handleSignUp}
+                                            // onClick={handleSignUp}
                                         >
                                             Register Now
                                         </button>
