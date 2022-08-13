@@ -39,3 +39,15 @@ mutation {
         email
     }
 }`;
+
+export const LOGIN_USER = (args) => `
+mutation {
+    login(loginInput: {
+        username: "${args.username}"
+        email: "${args.email}"
+        password: "${args.password}"
+    }){
+        username,
+        token
+    }
+}`;
