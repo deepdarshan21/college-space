@@ -51,3 +51,24 @@ mutation {
         token
     }
 }`;
+
+export const FETCH_USER_INFO = (username) => `
+{
+    getUserInfo(username: "${username}"){
+        name
+        surname
+        createdAt
+        updatedAt
+        username
+        email
+        branch
+        dateOfBirth
+        bio
+        about
+        role
+        year
+        interest
+        achivement
+        clubs
+    }
+}`;
