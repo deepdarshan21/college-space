@@ -13,18 +13,16 @@ export const Landing: React.FC<{}> = () => {
                         </h2>
                     </a>
                     <div className="flex items-center">
-                        <a
-                            href="#"
-                            className="mr-2 md:mr-6 text-[14px] md:text-[18px] font-medium text-gray-500 duration-150 rounded-[30px] px-[10px] md:px-[20px] py-[10px] hover:bg-neutral-100"
-                        >
-                            Join Now
-                        </a>
-                        <a
-                            href="#"
-                            className="text-[14px] md:text-[18px] font-medium text-blue-600 duration-150 rounded-[30px] px-[10px] md:px-[20px] py-[10px] border-2 hover:bg-cyan-50"
-                        >
-                            Sign in
-                        </a>
+                        <Link href="/auth/register" passHref>
+                            <a className="mr-2 md:mr-6 text-[14px] md:text-[18px] font-medium text-gray-500 duration-150 rounded-[30px] px-[10px] md:px-[20px] py-[10px] hover:bg-neutral-100">
+                                Sign up
+                            </a>
+                        </Link>
+                        <Link href="/auth/login" passHref>
+                            <a className="text-[14px] md:text-[18px] font-medium text-blue-600 duration-150 rounded-[30px] px-[10px] md:px-[20px] py-[10px] border-2 hover:bg-cyan-50">
+                                Sign in
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </nav>
@@ -49,7 +47,7 @@ export const Landing: React.FC<{}> = () => {
                             </header>
 
                             <div className="flex gap-4 mx-auto mt-8">
-                                <Link href="/contact-us" passHref>
+                                <Link href="/auth/register" passHref>
                                     <a className="grid w-40 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main">
                                         Join Now
                                     </a>
