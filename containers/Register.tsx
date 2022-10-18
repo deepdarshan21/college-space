@@ -48,7 +48,7 @@ export const Register: React.FC<{}> = () => {
         } catch (err: any) {
             const result = err.response.data;
 
-            if (result.errors) {
+            if (result?.errors) {
                 alert(result.errors[0].message);
                 return;
             }
