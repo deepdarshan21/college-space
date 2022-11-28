@@ -19,6 +19,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@types/node": "18.6.2",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
