@@ -67,7 +67,7 @@ export const ProfileContainer: React.FC<{}> = () => {
             };
             fetchData();
         } catch (err) {}
-    }, [username]);
+    }, [userInfo.username, username]);
 
     return (
         <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw] space-y-8">
