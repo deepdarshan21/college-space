@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { BiEdit } from "react-icons/bi";
+import Cookies from "js-cookie";
 
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
@@ -9,6 +11,7 @@ import { FETCH_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
     const username = router.query.username;
+    const [allowEdit, setAllowEdit] = useState<Boolean>(false);
     const [userInfo, setUserInfo] = useState<{
         name: String;
         surname: String;
@@ -46,6 +49,7 @@ export const ProfileContainer: React.FC<{}> = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const userLoggedInUserName = Cookies.get("username");
         try {
             const fetchData = async () => {
                 const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
@@ -58,6 +62,7 @@ export const ProfileContainer: React.FC<{}> = () => {
 
                 setUserInfo(res.data.data.getUserInfo);
                 setPosts(postRes.data.data.getPostsOfUser);
+                setAllowEdit(userInfo.username == userLoggedInUserName);
                 setLoading(false);
             };
             fetchData();
@@ -74,7 +79,14 @@ export const ProfileContainer: React.FC<{}> = () => {
                 </div>
             </div>
             <div className="w-full bg-white px-6 py-4 rounded-xl">
-                <h4 className="text-[20px] font-semibold underline mb-6">Details</h4>
+                <div className="flex justify-between">
+                    <h4 className="text-[20px] font-semibold underline mb-6">Details</h4>
+                    {allowEdit && (
+                        <div>
+                            <BiEdit />
+                        </div>
+                    )}
+                </div>
                 <div>
                     <span className="flex gap-2 md:gap-4">
                         <h6 className="flex-[3] md:flex-[1] font-medium">Role:</h6>
