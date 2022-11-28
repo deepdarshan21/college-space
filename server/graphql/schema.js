@@ -12,6 +12,7 @@ module.exports = buildSchema(`
     email: String!
     username: String!
     token: String!
+    name: String!
   }
   type UserInfo {
     username: String!

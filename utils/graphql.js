@@ -48,7 +48,8 @@ mutation {
         password: "${args.password}"
     }){
         username,
-        token
+        token,
+        name,
     }
 }`;
 

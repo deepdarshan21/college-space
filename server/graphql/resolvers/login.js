@@ -25,6 +25,7 @@ module.exports = async (args) => {
 
             return {
                 username: isUserNameExits.username,
+                name: isUserNameExits.name,
                 token,
             };
         } else {
@@ -48,6 +49,7 @@ module.exports = async (args) => {
 
             return {
                 username: isEmailExits.username,
+                name: isEmailExits.name,
                 token,
             };
         } else {

@@ -45,6 +45,7 @@ export const Login: React.FC<{}> = () => {
             });
             const userData = res?.data?.data?.login;
             Cookies.set("username", userData.username, { expires: 7 });
+            Cookies.set("name", userData.name, { expires: 7 });
             Cookies.set("token", userData.token, { expires: 7 });
             alert("Successfully logged in");
             router.push(`/feed`);
