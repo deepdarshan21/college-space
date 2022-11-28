@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { WritePost } from "@/components/WritePost";
 import { Article } from "@/components/Article";
@@ -7,6 +9,11 @@ import { FETCH_POSTS_QUERY } from "@/utils/graphql";
 // import { ProfilePageJsonLd } from "next-seo";
 
 export const FeedContainer: React.FC<{}> = () => {
+    const router = useRouter();
+    useEffect(() => {
+        const userToken = Cookies.get("token");
+        if (!userToken) router.push("/");
+    }, [router]);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState<Array<any>>([]);
 

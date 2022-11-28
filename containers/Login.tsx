@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { AuthInput } from "@/components/AuthInput";
@@ -10,6 +11,10 @@ import { LOGIN_USER } from "@/utils/graphql";
 
 export const Login: React.FC<{}> = () => {
     const router = useRouter();
+    useEffect(() => {
+        const userToken = Cookies.get("token");
+        if (userToken) router.push("/feed");
+    }, [router]);
 
     const [loginInput, setLoginInput] = useState<{
         email: string;
@@ -38,8 +43,11 @@ export const Login: React.FC<{}> = () => {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
                 query: LOGIN_USER(loginInput),
             });
+            const userData = res?.data?.data?.login;
+            Cookies.set("username", userData.username, { expires: 7 });
+            Cookies.set("token", userData.token, { expires: 7 });
             alert("Successfully logged in");
-            router.push(`/user/${res.data.data.login.username}`);
+            router.push(`/feed`);
         } catch (err: any) {
             const result = err.response.data;
 
