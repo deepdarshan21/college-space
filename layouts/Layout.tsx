@@ -24,7 +24,7 @@ export const Layout = (props: LayoutProps) => (
 );
 
 Layout.propTypes = {
-    displayNav: PropTypes.string.isRequired,
+    displayNav: PropTypes.bool.isRequired,
     displayFooter: PropTypes.string.isRequired,
 };
 
