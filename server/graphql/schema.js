@@ -15,21 +15,38 @@ module.exports = buildSchema(`
     name: String!
   }
   type UserInfo {
-    username: String!
-    name: String!
-    surname: String!
-    email: String!
-    createdAt: String!
-    updatedAt: String!
-    branch: String!
-    dateOfBirth: String!
-    bio: String!
-    about: String!
-    role: String!
-    year: String!
-    interest: String!
-    achivement: String!
-    clubs: String!
+    username: String
+    name: String
+    surname: String
+    email: String
+    createdAt: String
+    updatedAt: String
+    branch: String
+    dateOfBirth: String
+    bio: String
+    about: String
+    role: String
+    year: String
+    interest: String
+    achivement: String
+    clubs: String
+  }
+  input UserInfoInput {
+    username: String
+    name: String
+    surname: String
+    email: String
+    createdAt: String
+    updatedAt: String
+    branch: String
+    dateOfBirth: String
+    bio: String
+    about: String
+    role: String
+    year: String
+    interest: String
+    achivement: String
+    clubs: String
   }
   input RegisterInput {
     name: String!
@@ -66,5 +83,6 @@ module.exports = buildSchema(`
     register(registerInput: RegisterInput): User!
     login(loginInput: LoginInput): User!
     addPost(postInput: PostInput): String!
+    updateUserInfo(userInfoInput: UserInfoInput): String!
   }
 `);
