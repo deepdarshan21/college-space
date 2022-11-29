@@ -42,7 +42,7 @@ export const WritePost = () => {
             config
         );
         setWritePost("");
-        router.reload(window.location.pathname);
+        router.reload();
         handleClosePopup();
     };
 
