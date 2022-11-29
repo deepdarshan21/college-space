@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { AuthInput } from "@/components/AuthInput";
+import { LOGIN_USER } from "@/utils/graphql";
 
 export const Login: React.FC<{}> = () => {
+    const router = useRouter();
+    useEffect(() => {
+        const userToken = Cookies.get("token");
+        if (userToken) router.push("/feed");
+    }, [router]);
+
     const [loginInput, setLoginInput] = useState<{
         email: string;
         username: string;
@@ -24,6 +34,29 @@ export const Login: React.FC<{}> = () => {
 
     const handleInputChange = (evt: any) => {
         setLoginInput({ ...loginInput, [evt.target.name]: evt.target.value });
+    };
+
+    const handleLogin = async (evt: any) => {
+        evt.preventDefault();
+
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                query: LOGIN_USER(loginInput),
+            });
+            const userData = res?.data?.data?.login;
+            Cookies.set("username", userData.username, { expires: 7 });
+            Cookies.set("name", userData.name, { expires: 7 });
+            Cookies.set("token", userData.token, { expires: 7 });
+            alert("Successfully logged in");
+            router.push(`/feed`);
+        } catch (err: any) {
+            const result = err.response.data;
+
+            if (result.errors) {
+                alert(result.errors[0].message);
+                return;
+            }
+        }
     };
 
     return (
@@ -73,7 +106,7 @@ export const Login: React.FC<{}> = () => {
                             </header>
 
                             <div className="flex w-full mx-auto mt-8">
-                                <form className="w-full">
+                                <form className="w-full" onSubmit={handleLogin}>
                                     <div
                                         className="rounded-md shadow-sm w-full grid grid-cols-2 mb-4 bg-white text-black"
                                         role="group"
@@ -133,10 +166,13 @@ export const Login: React.FC<{}> = () => {
                                         onChange={handleInputChange}
                                     />
                                     <div className="flex flex-wrap gap-8">
-                                        <button className="grid px-4 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main">
+                                        <button
+                                            type="submit"
+                                            className="grid px-4 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main"
+                                        >
                                             Login Now
                                         </button>
-                                        <Link href="/contact-us" passHref>
+                                        <Link href="/auth/register" passHref>
                                             <a className="grid px-4 py-3 font-semibold text-black rounded-md bg-white place-items-center text-palette-main">
                                                 Create Account
                                             </a>

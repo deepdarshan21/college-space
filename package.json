@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
     "next": "12.2.3",
     "next-seo": "^5.5.0",
     "prop-types": "^15.8.1",
@@ -18,6 +19,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@types/node": "18.6.2",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",

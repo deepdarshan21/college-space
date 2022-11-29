@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { AuthInput } from "@/components/AuthInput";
+import { REGISTER_USER } from "@/utils/graphql";
 
 export const Register: React.FC<{}> = () => {
-    const [loginInput, setLoginInput] = useState<{
+    const router = useRouter();
+    useEffect(() => {
+        const userToken = Cookies.get("token");
+        if (userToken) router.push("/feed");
+    }, [router]);
+
+    const [registerInput, setRegisterInput] = useState<{
         name: String;
         surname: String;
         email: string;
@@ -23,7 +33,31 @@ export const Register: React.FC<{}> = () => {
     });
 
     const handleInputChange = (evt: any) => {
-        setLoginInput({ ...loginInput, [evt.target.name]: evt.target.value });
+        setRegisterInput({ ...registerInput, [evt.target.name]: evt.target.value });
+    };
+
+    const handleSignUp = async (evt: any) => {
+        evt.preventDefault();
+        if (registerInput.password !== registerInput.confirmPassword) {
+            alert("Password and confirm password must match");
+            setRegisterInput({ ...registerInput, password: "", confirmPassword: "" });
+            return;
+        }
+
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                query: REGISTER_USER(registerInput),
+            });
+            alert("Successfully registered");
+            router.push("/auth/login");
+        } catch (err: any) {
+            const result = err.response.data;
+
+            if (result?.errors) {
+                alert(result.errors[0].message);
+                return;
+            }
+        }
     };
 
     return (
@@ -73,7 +107,7 @@ export const Register: React.FC<{}> = () => {
                             </header>
 
                             <div className="flex w-full mx-auto mt-8">
-                                <form className="w-full">
+                                <form className="w-full" onSubmit={handleSignUp}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
                                         <AuthInput
                                             icon={<AiOutlineUser size={24} />}
@@ -81,7 +115,7 @@ export const Register: React.FC<{}> = () => {
                                             type="text"
                                             name="name"
                                             isRequired
-                                            value={loginInput.name}
+                                            value={registerInput.name}
                                             onChange={handleInputChange}
                                         />
                                         <AuthInput
@@ -89,7 +123,7 @@ export const Register: React.FC<{}> = () => {
                                             label="Surname"
                                             type="text"
                                             name="surname"
-                                            value={loginInput.surname}
+                                            value={registerInput.surname}
                                             onChange={handleInputChange}
                                         />
                                     </div>
@@ -99,7 +133,7 @@ export const Register: React.FC<{}> = () => {
                                         type="email"
                                         name="email"
                                         isRequired
-                                        value={loginInput.email}
+                                        value={registerInput.email}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -108,7 +142,7 @@ export const Register: React.FC<{}> = () => {
                                         type="text"
                                         name="username"
                                         isRequired
-                                        value={loginInput.username}
+                                        value={registerInput.username}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -117,7 +151,7 @@ export const Register: React.FC<{}> = () => {
                                         type="password"
                                         name="password"
                                         isRequired
-                                        value={loginInput.password}
+                                        value={registerInput.password}
                                         onChange={handleInputChange}
                                     />
                                     <AuthInput
@@ -126,14 +160,18 @@ export const Register: React.FC<{}> = () => {
                                         type="password"
                                         name="confirmPassword"
                                         isRequired
-                                        value={loginInput.confirmPassword}
+                                        value={registerInput.confirmPassword}
                                         onChange={handleInputChange}
                                     />
                                     <div className="flex flex-wrap gap-8">
-                                        <button className="grid px-4 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main">
+                                        <button
+                                            type="submit"
+                                            className="grid px-4 py-3 font-semibold text-white rounded-md bg-blue-600 place-items-center text-palette-main"
+                                            // onClick={handleSignUp}
+                                        >
                                             Register Now
                                         </button>
-                                        <Link href="/contact-us" passHref>
+                                        <Link href="/auth/login" passHref>
                                             <a className="grid px-4 py-3 font-semibold text-black rounded-md bg-white place-items-center text-palette-main">
                                                 Already have a account
                                             </a>
