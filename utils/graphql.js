@@ -73,6 +73,22 @@ export const FETCH_USER_INFO = (username) => `
         clubs
     }
 }`;
+
+export const UPDATE_USER_INFO = (args) => `
+mutation {
+    updateUserInfo(userInfoInput: {
+        branch: "${args.branch}"
+        dateOfBirth: "${args.dateOfBirth}"
+        bio: "${args.bio}"
+        about: "${args.about}"
+        role: "${args.role}"
+        year: "${args.year}"
+        interest: "${args.interest}"
+        achivement: "${args.achivement}"
+        clubs: "${args.clubs}"
+    })
+}`;
+
 export const FETCH_USER_NAME = (username) => `
 {
     getUserInfo(username: "${username}"){

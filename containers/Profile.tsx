@@ -2,32 +2,34 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { BiEdit } from "react-icons/bi";
+import { MdDoneAll } from "react-icons/md";
 import Cookies from "js-cookie";
 
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
-import { FETCH_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
+import { FETCH_USER_INFO, UPDATE_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
 
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
     const username = router.query.username;
     const [allowEdit, setAllowEdit] = useState<Boolean>(false);
+    const [edit, setEdit] = useState<Boolean>(false);
     const [userInfo, setUserInfo] = useState<{
-        name: String;
-        surname: String;
-        createdAt: String;
-        updatedAt: String;
-        username: String;
-        email: String;
-        branch: String;
-        dateOfBirth: String;
-        bio: String;
-        about: String;
-        role: String;
-        year: String;
-        interest: String;
-        achivement: String;
-        clubs: String;
+        name: string;
+        surname: string;
+        createdAt: string;
+        updatedAt: string;
+        username: string;
+        email: string;
+        branch: string;
+        dateOfBirth: string;
+        bio: string;
+        about: string;
+        role: string;
+        year: string;
+        interest: string;
+        achivement: string;
+        clubs: string;
     }>({
         name: "",
         surname: "",
@@ -68,6 +70,25 @@ export const ProfileContainer: React.FC<{}> = () => {
             fetchData();
         } catch (err) {}
     }, [userInfo.username, username]);
+    const handleInputChange = (evt: any) => {
+        setUserInfo({ ...userInfo, [evt.target.name]: evt.target.value });
+    };
+
+    const handleClick = async () => {
+        if (edit) {
+            const config = {
+                headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+            };
+            const res = await axios.post(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
+                {
+                    query: UPDATE_USER_INFO(userInfo),
+                },
+                config
+            );
+        }
+        setEdit(!edit);
+    };
 
     return (
         <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw] space-y-8">
@@ -82,40 +103,126 @@ export const ProfileContainer: React.FC<{}> = () => {
                 <div className="flex justify-between">
                     <h4 className="text-[20px] font-semibold underline mb-6">Details</h4>
                     {allowEdit && (
-                        <div>
-                            <BiEdit />
+                        <div onClick={handleClick}>
+                            {!edit && (
+                                <span>
+                                    <BiEdit />
+                                </span>
+                            )}
+                            {edit && (
+                                <span>
+                                    <MdDoneAll />
+                                </span>
+                            )}
                         </div>
                     )}
                 </div>
                 <div>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Role:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.role}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Branch:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.branch}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Year:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.year}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Clubs:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.clubs}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Interest:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.interest}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">Achivements:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.achivement}</p>
-                    </span>
-                    <span className="flex gap-2 md:gap-4">
-                        <h6 className="flex-[3] md:flex-[1] font-medium">About:</h6>
-                        <p className="flex-[7] md:flex-[4]">{userInfo.about}</p>
-                    </span>
+                    {(userInfo.role.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Role:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.role}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="role"
+                                    value={userInfo.role}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.branch.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Branch:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.branch}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="branch"
+                                    value={userInfo.branch}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.year.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Year:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.year}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="year"
+                                    value={userInfo.year}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.clubs.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Clubs:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.clubs}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="clubs"
+                                    value={userInfo.clubs}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.interest.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Interest:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.interest}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="interest"
+                                    value={userInfo.interest}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.achivement.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">Achivements:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.achivement}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="achivement"
+                                    value={userInfo.achivement}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
+                    {(userInfo.about.length > 0 || edit) && (
+                        <span className="flex gap-2 md:gap-4">
+                            <h6 className="flex-[3] md:flex-[1] font-medium">About:</h6>
+                            {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.about}</p>}
+                            {edit && (
+                                <input
+                                    type="text"
+                                    name="about"
+                                    value={userInfo.about}
+                                    onChange={handleInputChange}
+                                    size={50}
+                                />
+                            )}
+                        </span>
+                    )}
                 </div>
             </div>
             <div className="w-full">
