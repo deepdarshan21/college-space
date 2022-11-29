@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 import { Avatar } from "@/components/Avatar";
 import { Popup } from "@/components/Popup";
+import { ADD_POST } from "@/utils/graphql";
 
 export const WritePost = () => {
     const [popupState, setPopupState] = useState(false);
     const [writePost, setWritePost] = useState("");
+    const router = useRouter();
 
     const handleWritePost = (evt: any) => {
         setWritePost(evt.target.value);
@@ -17,6 +22,28 @@ export const WritePost = () => {
     };
     const handleClosePopup = () => {
         setPopupState(false);
+    };
+    const handlePost = async () => {
+        if (writePost.length === 0) {
+            alert("Please write something before posting");
+            return;
+        }
+        const cnf = confirm("Ready to post");
+        if (!cnf) return;
+        const config = {
+            headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+        };
+
+        const res = await axios.post(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
+            {
+                query: ADD_POST(writePost),
+            },
+            config
+        );
+        setWritePost("");
+        router.reload(window.location.pathname);
+        handleClosePopup();
     };
 
     return (
@@ -50,8 +77,14 @@ export const WritePost = () => {
                     />
                 </div>
                 <div className="px-4 py-2 flex justify-between">
-                    <span></span>{/* For tages */}
-                    <button className="px-6 py-2 rounded-3xl bg-[#004182] text-white">Post</button>
+                    <span></span>
+                    {/* For tages */}
+                    <button
+                        className="px-6 py-2 rounded-3xl bg-[#004182] text-white"
+                        onClick={handlePost}
+                    >
+                        Post
+                    </button>
                 </div>
             </Popup>
         </div>
