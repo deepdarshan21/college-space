@@ -24,7 +24,7 @@ export const Footer = (props: FooterProps) => (
                     </span>
                 </a>
             </li>
-            <li>
+            {/* <li>
                 <a
                     href="#"
                     className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
@@ -34,7 +34,7 @@ export const Footer = (props: FooterProps) => (
                         <span>Chat</span>
                     </span>
                 </a>
-            </li>
+            </li> */}
             <li>
                 <a
                     href="#"
