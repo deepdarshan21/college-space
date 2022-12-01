@@ -4,6 +4,7 @@ import { AiFillHome, AiFillWechat, AiFillCaretDown } from "react-icons/ai";
 import { BsBookFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Image from "next/image";
 import { Avatar } from "@/components/Avatar";
@@ -15,19 +16,21 @@ export const Navbar = () => {
     return (
         <nav className="bg-white px-6 sm:px-20 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="/" className="flex items-center">
-                    <span className="flex mr-3 self-center h-10 w-10 sm:h-9">
-                        <Image
-                            src={require("@/images/icon.png")}
-                            alt="Flowbite Logo"
-                            // layout="fill"
-                            objectFit="contain"
-                        />
+                <Link href="/">
+                    <span className="flex items-center">
+                        <span className="flex mr-3 self-center h-10 w-10 sm:h-9">
+                            <Image
+                                src={require("@/images/icon.png")}
+                                alt="Flowbite Logo"
+                                // layout="fill"
+                                objectFit="contain"
+                            />
+                        </span>
+                        <span className="self-center text-[22px]  hidden md:block font-bold whitespace-nowrap">
+                            College Space
+                        </span>
                     </span>
-                    <span className="self-center text-[22px]  hidden md:block font-bold whitespace-nowrap">
-                        College Space
-                    </span>
-                </a>
+                </Link>
 
                 <div className="flex relative">
                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -48,16 +51,12 @@ export const Navbar = () => {
                 >
                     <ul className="flex flex-col px-4  mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                         <li>
-                            <a
-                                href="#"
-                                className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
-                                aria-current="page"
-                            >
-                                <span className="flex flex-col items-center">
+                            <Link href="/feed" aria-current="page">
+                                <span className="flex flex-col items-center py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
                                     <AiFillHome size={28} />
                                     <span>Home</span>
                                 </span>
-                            </a>
+                            </Link>
                         </li>
                         {/* <li>
                             <a
