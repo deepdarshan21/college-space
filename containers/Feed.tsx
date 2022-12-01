@@ -32,7 +32,7 @@ export const FeedContainer: React.FC<{}> = () => {
     }, []);
     return (
         <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw]">
-            <WritePost />
+            <WritePost name={Cookies.get("name")} />
             <br />
             {loading ? (
                 <h1>Loading posts..</h1>

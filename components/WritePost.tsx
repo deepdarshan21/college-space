@@ -8,7 +8,11 @@ import { Avatar } from "@/components/Avatar";
 import { Popup } from "@/components/Popup";
 import { ADD_POST } from "@/utils/graphql";
 
-export const WritePost = () => {
+type WritePostProps = {
+    name: string | undefined;
+};
+
+export const WritePost = (props: WritePostProps) => {
     const [popupState, setPopupState] = useState(false);
     const [writePost, setWritePost] = useState("");
     const router = useRouter();
@@ -65,7 +69,7 @@ export const WritePost = () => {
                 <div className="py-6 px-4 space-y-4">
                     <div className="flex space-x-8 items-center">
                         <Avatar size={44} />
-                        <span className="text-[20px] font-semibold">{"Deepdarshan"}</span>
+                        <span className="text-[20px] font-semibold">{`${props.name}`}</span>
                     </div>
                     <textarea
                         className="w-full resize-none border-none shadow-none outline-none overflow-auto"
