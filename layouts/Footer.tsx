@@ -20,11 +20,11 @@ export const Footer = (props: FooterProps) => {
         <footer className="bg-white fixed bottom-0 text-center w-full lg:hidden">
             <ul className="flex flex-row justify-between px-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                 <li>
-                    <Link href="/feed" aria-current="page">
-                        <span className="flex flex-col items-center py-2 pr-4 pl-3 bg-white rounded text-blue-700">
+                    <Link href="/feed" passHref>
+                        <a className="flex flex-col items-center py-2 pr-4 pl-3 bg-white rounded text-blue-700">
                             <AiFillHome size={28} />
                             <span>Home</span>
-                        </span>
+                        </a>
                     </Link>
                 </li>
                 {/* <li>
@@ -60,7 +60,7 @@ export const Footer = (props: FooterProps) => {
                                 Me <AiFillCaretDown />
                             </span>
                             {dropdown && (
-                                <span className="z-100 absolute bottom-16 mt-2 py-2 w-32 text-center bg-white rounded-lg shadow-xl">
+                                <span className="z-100 absolute bottom-16 right-2 mt-2 py-2 w-32 text-center bg-white rounded-lg shadow-xl">
                                     <button
                                         onClick={() =>
                                             router.push(`/user/${Cookies.get("username")}`)

@@ -7,11 +7,11 @@ export const Landing: React.FC<{}> = () => {
         <div className="w-full h-max absolute top-0 bg-[#F3F2EF]">
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-4">
-                    <a href="/" className="flex items-center">
-                        <h2 className="self-center text-[24px] md:text-[32px] font-bold whitespace-nowrap">
+                    <Link href="/" passHref>
+                        <a className="flex items-center self-center text-[24px] md:text-[32px] font-bold whitespace-nowrap">
                             College Space
-                        </h2>
-                    </a>
+                        </a>
+                    </Link>
                     <div className="flex items-center">
                         <Link href="/auth/register" passHref>
                             <a className="mr-2 md:mr-6 text-[14px] md:text-[18px] font-medium text-gray-500 duration-150 rounded-[30px] px-[10px] md:px-[20px] py-[10px] hover:bg-neutral-100">

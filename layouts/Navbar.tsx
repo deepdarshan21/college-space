@@ -51,11 +51,11 @@ export const Navbar = () => {
                 >
                     <ul className="flex flex-col px-4  mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                         <li>
-                            <Link href="/feed" aria-current="page">
-                                <span className="flex flex-col items-center py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
+                            <Link href="/feed" aria-current="page" passHref>
+                                <a className="flex flex-col items-center py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
                                     <AiFillHome size={28} />
                                     <span>Home</span>
-                                </span>
+                                </a>
                             </Link>
                         </li>
                         {/* <li>
@@ -83,7 +83,7 @@ export const Navbar = () => {
                         <li>
                             <div
                                 onClick={() => setDropdown(!dropdown)}
-                                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                                className="block py-2 pr-4 pl-3 cursor-pointer text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
                             >
                                 <div className="flex flex-col items-center">
                                     <Avatar size={28} />
