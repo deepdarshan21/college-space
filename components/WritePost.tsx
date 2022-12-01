@@ -32,8 +32,6 @@ export const WritePost = (props: WritePostProps) => {
             alert("Please write something before posting");
             return;
         }
-        const cnf = confirm("Ready to post");
-        if (!cnf) return;
         const config = {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
         };
@@ -84,7 +82,8 @@ export const WritePost = (props: WritePostProps) => {
                     <span></span>
                     {/* For tages */}
                     <button
-                        className="px-6 py-2 rounded-3xl bg-[#004182] text-white"
+                        className="px-6 py-2 rounded-3xl bg-[#004182] disabled:bg-[#6b9fd4] text-white"
+                        disabled={!writePost.length}
                         onClick={handlePost}
                     >
                         Post
