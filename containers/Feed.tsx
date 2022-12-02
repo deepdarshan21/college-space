@@ -16,6 +16,7 @@ export const FeedContainer: React.FC<{}> = () => {
     }, [router]);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState<Array<any>>([]);
+    const [newPost, setNewPost] = useState<Boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,12 +28,13 @@ export const FeedContainer: React.FC<{}> = () => {
                 setPosts(result.data.getPosts);
                 setLoading(false);
             }
+            setNewPost(false);
         };
         fetchData();
-    }, []);
+    }, [newPost]);
     return (
         <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw]">
-            <WritePost name={Cookies.get("name")} />
+            <WritePost name={Cookies.get("name")} setNewPost={setNewPost} />
             <br />
             {loading ? (
                 <h1>Loading posts..</h1>

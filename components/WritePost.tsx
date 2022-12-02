@@ -10,6 +10,7 @@ import { ADD_POST } from "@/utils/graphql";
 
 type WritePostProps = {
     name: string | undefined;
+    setNewPost: any;
 };
 
 export const WritePost = (props: WritePostProps) => {
@@ -44,7 +45,8 @@ export const WritePost = (props: WritePostProps) => {
             config
         );
         setWritePost("");
-        router.reload();
+        props.setNewPost(true);
+        // router.reload();
         handleClosePopup();
     };
 
