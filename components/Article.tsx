@@ -44,7 +44,9 @@ export const Article = (props: ArticleProps) => {
                     {bio.length > 1 && <div className="text-[14px] text-[#706666]">{bio}</div>}
                 </span>
             </div>
-            <div className="text-left text-black">{props.body}</div>
+            <div className="text-left break-words ">
+                <pre className="whitespace-pre-wrap">{props.body}</pre>
+            </div>
             <div>
                 <div className="flex justify-between text-[#706666] text-sm  border-b-2">
                     <span>{props.likes.length || "0"} likes</span>
