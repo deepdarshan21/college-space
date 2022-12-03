@@ -29,7 +29,7 @@ export const FETCH_USER_INFO_FOR_POST = (username) => `
 export const ADD_POST = (args) => `
 mutation {
     addPost(postInput: {
-        body: "${args}"
+        body: """${args}"""
     })
 }`;
 

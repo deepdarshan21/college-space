@@ -78,6 +78,7 @@ export const WritePost = (props: WritePostProps) => {
                         placeholder="What do you want to talk about?"
                         value={writePost}
                         onChange={handleWritePost}
+                        autoFocus
                     />
                 </div>
                 <div className="px-4 py-2 flex justify-between">
