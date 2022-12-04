@@ -60,10 +60,6 @@ module.exports = buildSchema(`
     email: String
     password: String!
   }
-  type Like {
-    username: String!
-    createdAt: String!
-  }
   type Comments {
     body: String!
     username: String!
@@ -74,16 +70,21 @@ module.exports = buildSchema(`
     body: String!
     username: String!
     createdAt: String!
-    likes: [Like]
+    likes: [String]
     comments: [Comments]
   }
   input PostInput {
     body: String!
+  }
+  input LikeInput{
+    postId: ID!
+    username: String!
   }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(loginInput: LoginInput): User!
     addPost(postInput: PostInput): String!
     updateUserInfo(userInfoInput: UserInfoInput): String!
+    likePost(likeInput: LikeInput!): String!
   }
 `);

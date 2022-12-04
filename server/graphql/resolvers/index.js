@@ -7,6 +7,7 @@ const getPost = require("./getPost");
 const getPostsOfUser = require("./getPostsOfUser");
 const getUserInfo = require("./getUserInfo");
 const updateUserInfo = require("./updateUserInfo");
+const likePost = require("./likePost");
 
 module.exports = {
     hello: hello,
@@ -18,4 +19,5 @@ module.exports = {
     getPostsOfUser: getPostsOfUser,
     getUserInfo: getUserInfo,
     updateUserInfo: updateUserInfo,
+    likePost: likePost,
 };

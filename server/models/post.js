@@ -17,18 +17,10 @@ const postSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    likes: [
-        {
-            username: {
-                type: String,
-                required: true,
-            },
-            createdAt: {
-                type: Date,
-                required: true,
-            },
-        },
-    ],
+    likes: {
+        type: Array,
+        default: [],
+    },
     comments: [
         {
             body: {
