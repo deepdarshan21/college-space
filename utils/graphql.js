@@ -4,10 +4,7 @@ export const FETCH_POSTS_QUERY = `
             body
             username
             createdAt
-            likes {
-                username
-                createdAt
-            }
+            likes
             comments {
                 username
                 body
@@ -109,7 +106,7 @@ export const FETCH_POSTS_OF_A_USER = (username) => `
         body,
         username,
         createdAt,
-        likes {username, createdAt},
+        likes,
         comments {username, body, createdAt}
     }
 }`;
