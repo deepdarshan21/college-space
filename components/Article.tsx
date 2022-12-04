@@ -8,7 +8,7 @@ import { FETCH_USER_INFO_FOR_POST, LIKE_POST } from "@/utils/graphql";
 import { Avatar } from "@/components/Avatar";
 
 type ArticleProps = {
-    id: String;
+    postId: String;
     body: String;
     likes: Array<string>;
     comments: Array<any>;
@@ -33,7 +33,7 @@ export const Article = (props: ArticleProps) => {
                 setName(result.getUserInfo.name + " " + result.getUserInfo.surname);
             }
             const username = Cookies.get("username")!;
-            if (!username && props.likes.includes(username)) {
+            if (username && props.likes.includes(username)) {
                 setLiked(true);
             }
         };
@@ -45,7 +45,7 @@ export const Article = (props: ArticleProps) => {
         if (liked) setNoOfLikes(noOfLikes - 1);
         else setNoOfLikes(noOfLikes + 1);
         const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
-            query: LIKE_POST({ postId: props.id, username: Cookies.get("username") }),
+            query: LIKE_POST({ postId: props.postId, username: Cookies.get("username") }),
         });
     };
 
