@@ -80,6 +80,10 @@ module.exports = buildSchema(`
     postId: ID!
     username: String!
   }
+  input ReportInput{
+    postId: ID!
+    username: String!
+  }
   type Mutation {
     register(registerInput: RegisterInput): User!
     login(loginInput: LoginInput): User!
@@ -87,5 +91,6 @@ module.exports = buildSchema(`
     updateUserInfo(userInfoInput: UserInfoInput): String!
     likePost(likeInput: LikeInput!): String!
     deletePost(postId: ID!): String!
+    reportPost(reportInput: ReportInput!): String!
   }
 `);
