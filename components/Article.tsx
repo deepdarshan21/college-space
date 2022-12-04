@@ -4,8 +4,15 @@ import { MdOutlineReportProblem } from "react-icons/md";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { FETCH_USER_INFO_FOR_POST, LIKE_POST, DELETE_POST, REPORT_POST } from "@/utils/graphql";
+import {
+    FETCH_USER_INFO_FOR_POST,
+    LIKE_POST,
+    COMMENT_POST,
+    DELETE_POST,
+    REPORT_POST,
+} from "@/utils/graphql";
 import { Avatar } from "@/components/Avatar";
+import { Comment } from "@/components/Comment";
 
 type ArticleProps = {
     postId: String;
@@ -20,6 +27,8 @@ export const Article = (props: ArticleProps) => {
     const [name, setName] = useState("");
     const [bio, setBio] = useState("");
     const [liked, setLiked] = useState(false);
+    const [showComment, setShowComment] = useState(false);
+    const [comment, setComment] = useState("");
     const [noOfLikes, setNoOfLikes] = useState(props.likes.length);
     const [noOfComments, setNoOfComments] = useState(props.comments.length);
 
@@ -50,6 +59,24 @@ export const Article = (props: ArticleProps) => {
         });
     };
 
+    const handleCommentSection = async () => {
+        setShowComment(!showComment);
+    };
+
+    const postComment = async () => {
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+            query: COMMENT_POST({
+                postId: props.postId,
+                body: comment,
+                username: Cookies.get("username"),
+            }),
+        });
+        setComment("");
+        setShowComment(false);
+        setNoOfComments(noOfComments + 1);
+        props.setNewPost(true);
+    };
+
     const handleReportAndDelete = async () => {
         if (props.username == Cookies.get("username")) {
             if (confirm("Are you sure to delete the post")) {
@@ -59,14 +86,14 @@ export const Article = (props: ArticleProps) => {
                 alert(res.data.data.deletePost);
                 props.setNewPost(true);
             }
-        }else{
-           if (confirm("Are you sure to report the post")) {
-               const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
-                   query: REPORT_POST({ postId: props.postId, username: Cookies.get("username") }),
-               });
-               alert(res.data.data.reportPost);
-               props.setNewPost(true);
-           } 
+        } else {
+            if (confirm("Are you sure to report the post")) {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                    query: REPORT_POST({ postId: props.postId, username: Cookies.get("username") }),
+                });
+                alert(res.data.data.reportPost);
+                props.setNewPost(true);
+            }
         }
     };
 
@@ -100,7 +127,7 @@ export const Article = (props: ArticleProps) => {
                     {/* Comments */}
                     <span
                         className="flex items-center space-x-2 pt-2 select-none"
-                        // onClick={handleLike}
+                        onClick={handleCommentSection}
                     >
                         <span>
                             <AiOutlineComment size={24} />
@@ -124,6 +151,36 @@ export const Article = (props: ArticleProps) => {
                     </span>
                 </div>
             </div>
+            {showComment && (
+                <div>
+                    <div className="bg-white flex justify-between items-center py-2 pb-8 w-full rounded-xl">
+                        <Avatar size={40} />
+                        <input
+                            className="ml-4 p-2 border border-[#ADADAD] rounded-3xl w-10/12"
+                            placeholder="Add a comment"
+                            value={comment}
+                            onChange={(evt: any) => setComment(evt.target.value)}
+                        />
+                        <button
+                            className="px-5 py-1.5 rounded-3xl bg-[#004182] disabled:bg-[#6b9fd4] text-white"
+                            disabled={!comment.length}
+                            onClick={postComment}
+                        >
+                            Post
+                        </button>
+                    </div>
+                    <div className="max-h-72 overflow-y-auto">
+                        {props.comments &&
+                            props.comments.map((comment, index) => (
+                                <Comment
+                                    key={index}
+                                    body={comment.body}
+                                    username={comment.username}
+                                />
+                            ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

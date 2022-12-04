@@ -117,6 +117,15 @@ mutation {
 }
 `;
 
+export const COMMENT_POST = (args) => `
+mutation {
+    commentPost(commentInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+        body: """${args.body}"""
+    })
+}`;
+
 export const DELETE_POST = (postId) => `
 mutation{
     deletePost(postId: "${postId}")
