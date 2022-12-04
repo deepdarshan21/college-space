@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
 import { FETCH_USER_INFO, UPDATE_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
+import { ProfilePageJsonLd } from "next-seo";
 
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
@@ -234,6 +235,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                     posts.map((post, index) => (
                         <Article
                             key={index}
+                            postId={post._id}
                             body={post.body}
                             likes={post.likes}
                             comments={post.comments}

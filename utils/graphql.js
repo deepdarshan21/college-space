@@ -99,6 +99,7 @@ export const FETCH_USER_NAME = (username) => `
 export const FETCH_POSTS_OF_A_USER = (username) => `
 {
     getPostsOfUser(username: "${username}"){
+        _id
         body,
         username,
         createdAt,
