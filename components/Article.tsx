@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { AiOutlineLike, AiFillLike, AiOutlineComment, AiFillDelete } from "react-icons/ai";
+import { MdOutlineReportProblem } from "react-icons/md";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -76,6 +77,34 @@ export const Article = (props: ArticleProps) => {
                         <span>Like</span>
                     </span>
                     {/* Comments */}
+                    <span
+                        className="flex items-center space-x-2 pt-2 select-none"
+                        onClick={handleLike}
+                    >
+                        <span>
+                            <AiOutlineComment size={24} />
+                        </span>
+                        <span>Comment</span>
+                    </span>
+                    <span
+                        className="flex items-center space-x-2 pt-2 select-none"
+                        onClick={handleLike}
+                    >
+                        <span>
+                            {props.username == Cookies.get("username") ? (
+                                <AiFillDelete size={24} />
+                            ) : (
+                                <MdOutlineReportProblem size={24} />
+                            )}
+                        </span>
+                        <span>
+                            {props.username == Cookies.get("username") ? (
+                                "Delete"
+                            ) : (
+                                "Report"
+                            )}
+                        </span>
+                    </span>
                 </div>
             </div>
         </div>
