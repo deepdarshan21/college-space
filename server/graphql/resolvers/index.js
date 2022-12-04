@@ -8,6 +8,7 @@ const getPostsOfUser = require("./getPostsOfUser");
 const getUserInfo = require("./getUserInfo");
 const updateUserInfo = require("./updateUserInfo");
 const likePost = require("./likePost");
+const deletePost = require("./deletePost");
 
 module.exports = {
     hello: hello,
@@ -20,4 +21,5 @@ module.exports = {
     getUserInfo: getUserInfo,
     updateUserInfo: updateUserInfo,
     likePost: likePost,
+    deletePost: deletePost,
 };

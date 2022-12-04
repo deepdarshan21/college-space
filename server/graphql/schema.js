@@ -86,5 +86,6 @@ module.exports = buildSchema(`
     addPost(postInput: PostInput): String!
     updateUserInfo(userInfoInput: UserInfoInput): String!
     likePost(likeInput: LikeInput!): String!
+    deletePost(postId: ID!): String!
   }
 `);
