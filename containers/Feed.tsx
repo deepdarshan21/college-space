@@ -43,11 +43,12 @@ export const FeedContainer: React.FC<{}> = () => {
                 posts.map((post, index) => (
                     <Article
                         key={index}
-                        postId= {post._id}
+                        postId={post._id}
                         body={post.body}
                         likes={post.likes}
                         comments={post.comments}
                         username={post.username}
+                        setNewPost={setNewPost}
                     />
                 ))
             )}

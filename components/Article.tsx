@@ -4,7 +4,7 @@ import { MdOutlineReportProblem } from "react-icons/md";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { FETCH_USER_INFO_FOR_POST, LIKE_POST } from "@/utils/graphql";
+import { FETCH_USER_INFO_FOR_POST, LIKE_POST, DELETE_POST, REPORT_POST } from "@/utils/graphql";
 import { Avatar } from "@/components/Avatar";
 
 type ArticleProps = {
@@ -13,6 +13,7 @@ type ArticleProps = {
     likes: Array<string>;
     comments: Array<any>;
     username: String;
+    setNewPost: any;
 };
 
 export const Article = (props: ArticleProps) => {
@@ -49,6 +50,26 @@ export const Article = (props: ArticleProps) => {
         });
     };
 
+    const handleReportAndDelete = async () => {
+        if (props.username == Cookies.get("username")) {
+            if (confirm("Are you sure to delete the post")) {
+                const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                    query: DELETE_POST(props.postId),
+                });
+                alert(res.data.data.deletePost);
+                props.setNewPost(true);
+            }
+        }else{
+           if (confirm("Are you sure to report the post")) {
+               const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
+                   query: REPORT_POST({ postId: props.postId, username: Cookies.get("username") }),
+               });
+               alert(res.data.data.reportPost);
+               props.setNewPost(true);
+           } 
+        }
+    };
+
     return (
         <div className="w-full bg-white p-4 space-y-4 my-2">
             <div className="flex space-x-4">
@@ -79,7 +100,7 @@ export const Article = (props: ArticleProps) => {
                     {/* Comments */}
                     <span
                         className="flex items-center space-x-2 pt-2 select-none"
-                        onClick={handleLike}
+                        // onClick={handleLike}
                     >
                         <span>
                             <AiOutlineComment size={24} />
@@ -88,7 +109,7 @@ export const Article = (props: ArticleProps) => {
                     </span>
                     <span
                         className="flex items-center space-x-2 pt-2 select-none"
-                        onClick={handleLike}
+                        onClick={handleReportAndDelete}
                     >
                         <span>
                             {props.username == Cookies.get("username") ? (
@@ -98,11 +119,7 @@ export const Article = (props: ArticleProps) => {
                             )}
                         </span>
                         <span>
-                            {props.username == Cookies.get("username") ? (
-                                "Delete"
-                            ) : (
-                                "Report"
-                            )}
+                            {props.username == Cookies.get("username") ? "Delete" : "Report"}
                         </span>
                     </span>
                 </div>

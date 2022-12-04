@@ -116,3 +116,16 @@ mutation {
     })
 }
 `;
+
+export const DELETE_POST = (postId) => `
+mutation{
+    deletePost(postId: "${postId}")
+}`;
+
+export const REPORT_POST = (args) => `
+mutation {
+    reportPost(reportInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+    })
+}`;

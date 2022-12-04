@@ -50,6 +50,7 @@ export const ProfileContainer: React.FC<{}> = () => {
     });
     const [posts, setPosts] = useState<Array<any>>([]);
     const [loading, setLoading] = useState(true);
+    const [newPost, setNewPost] = useState<Boolean>(false);
 
     useEffect(() => {
         const userLoggedInUserName = Cookies.get("username");
@@ -240,6 +241,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                             likes={post.likes}
                             comments={post.comments}
                             username={post.username}
+                            setNewPost = {setNewPost}
                         />
                     ))
                 )}
