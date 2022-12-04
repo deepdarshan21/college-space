@@ -65,6 +65,11 @@ module.exports = buildSchema(`
     username: String!
     createdAt: String!
   }
+  input CommentInput{
+    postId: ID!
+    body: String!
+    username: String!
+  }
   type Post {
     _id: String!
     body: String!
@@ -90,6 +95,7 @@ module.exports = buildSchema(`
     addPost(postInput: PostInput): String!
     updateUserInfo(userInfoInput: UserInfoInput): String!
     likePost(likeInput: LikeInput!): String!
+    commentPost(commentInput: CommentInput): String!
     deletePost(postId: ID!): String!
     reportPost(reportInput: ReportInput!): String!
   }
