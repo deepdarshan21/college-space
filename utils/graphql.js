@@ -1,18 +1,14 @@
 export const FETCH_POSTS_QUERY = `
-    {
-        getPosts {
-            body
-            username
-            createdAt
-            likes
-            comments {
-                username
-                body
-                createdAt
-            }
-        }
+{
+    getPosts{
+        _id,
+        body,
+        username,
+        createdAt,
+        likes,
+        comments {username, body, createdAt}
     }
-`;
+}`;
 
 export const FETCH_USER_INFO_FOR_POST = (username) => `
 {
@@ -110,3 +106,12 @@ export const FETCH_POSTS_OF_A_USER = (username) => `
         comments {username, body, createdAt}
     }
 }`;
+
+export const LIKE_POST = (args) => `
+mutation {
+    likePost(likeInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+    })
+}
+`;
