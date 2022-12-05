@@ -4,7 +4,7 @@ const checkAuth = require("./../../utils/checkAuth");
 module.exports = async (args, context) => {
     const user = checkAuth(context);
 
-    console.log(user);
+    console.log(args.userInfoInput);
 
     const res = await User.findOneAndUpdate(
         { username: user.username },

@@ -31,6 +31,7 @@ export const ProfileContainer: React.FC<{}> = () => {
         interest: string;
         achivement: string;
         clubs: string;
+        profilePic: string;
     }>({
         name: "",
         surname: "",
@@ -47,10 +48,12 @@ export const ProfileContainer: React.FC<{}> = () => {
         interest: "",
         achivement: "",
         clubs: "",
+        profilePic: "",
     });
     const [posts, setPosts] = useState<Array<any>>([]);
     const [loading, setLoading] = useState(true);
     const [newPost, setNewPost] = useState<Boolean>(false);
+    const [image, setImage] = useState();
 
     useEffect(() => {
         const userLoggedInUserName = Cookies.get("username");
@@ -78,6 +81,28 @@ export const ProfileContainer: React.FC<{}> = () => {
 
     const handleClick = async () => {
         if (edit) {
+            if (image) {
+                const data = new FormData();
+                data.append("file", image);
+                data.append("upload_preset", "collage-space-profilePic");
+                data.append("cloud_name", "dmlzmh3o5");
+
+                await fetch("https://api.cloudinary.com/v1_1/dmlzmh3o5/image/upload", {
+                    method: "post",
+                    body: data,
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data.url);
+                        setUserInfo({ ...userInfo, profilePic: data.url });
+                        console.log(userInfo);
+                        
+                    })
+                    .catch((err) => {
+                        alert("Please try again letter");
+                    });
+            }
+
             const config = {
                 headers: { Authorization: `Bearer ${Cookies.get("token")}` },
             };
@@ -224,6 +249,15 @@ export const ProfileContainer: React.FC<{}> = () => {
                                 />
                             )}
                         </span>
+                    )}
+                    {edit && (
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e: any) => {
+                                setImage(e.target.files[0]);
+                            }}
+                        />
                     )}
                 </div>
             </div>

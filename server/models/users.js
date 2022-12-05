@@ -69,6 +69,9 @@ const userSchema = new mongoose.Schema({
     clubs: {
         type: String,
     },
+    profilePic: {
+        type: String,
+    },
     topics: [
         {
             topicName: {

@@ -53,6 +53,7 @@ module.exports = buildSchema(`
     interest: String
     achivement: String
     clubs: String
+    profilePic: String
   }
   input RegisterInput {
     name: String!

@@ -75,7 +75,9 @@ export const FETCH_USER_INFO = (username) => `
     }
 }`;
 
-export const UPDATE_USER_INFO = (args) => `
+export const UPDATE_USER_INFO = (args) => {
+    console.log(args);
+    return `
 mutation {
     updateUserInfo(userInfoInput: {
         branch: "${args.branch}"
@@ -87,8 +89,10 @@ mutation {
         interest: "${args.interest}"
         achivement: "${args.achivement}"
         clubs: "${args.clubs}"
+        profilePic: "${args.profilePic}"
     })
 }`;
+};
 
 export const FETCH_USER_NAME = (username) => `
 {
