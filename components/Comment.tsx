@@ -8,7 +8,7 @@ import { Avatar } from "@/components/Avatar";
 type CommentProps = {
     body: String;
     username: String;
-    createdAt: sring;
+    createdAt: String;
 };
 
 export const Comment = (props: CommentProps) => {
