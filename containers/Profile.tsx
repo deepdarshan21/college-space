@@ -241,7 +241,8 @@ export const ProfileContainer: React.FC<{}> = () => {
                             likes={post.likes}
                             comments={post.comments}
                             username={post.username}
-                            setNewPost = {setNewPost}
+                            createdAt={post.createdAt}
+                            setNewPost={setNewPost}
                         />
                     ))
                 )}
