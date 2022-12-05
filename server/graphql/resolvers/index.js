@@ -12,6 +12,7 @@ const deletePost = require("./deletePost");
 const reportPost = require("./reportPost");
 const commentPost = require("./commentPost");
 const searchUser = require("./searchUser");
+const getTopics = require("./getTopics");
 
 module.exports = {
     hello: hello,
@@ -28,4 +29,5 @@ module.exports = {
     deletePost: deletePost,
     reportPost: reportPost,
     searchUser: searchUser,
+    getTopics: getTopics,
 };

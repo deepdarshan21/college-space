@@ -8,6 +8,7 @@ module.exports = buildSchema(`
     getPostsOfUser(username: String!): [Post]
     getUserInfo(username: String!): UserInfo!
     searchUser(string: String!): [UserSearch]
+    getTopics: [String]
   }
   type UserSearch{
     name: String
