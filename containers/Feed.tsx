@@ -16,23 +16,25 @@ export const FeedContainer: React.FC<{}> = () => {
     }, [router]);
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState<Array<any>>([]);
+    const [newPost, setNewPost] = useState<Boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
-                query: FETCH_POSTS_QUERY,
+                query: FETCH_POSTS_QUERY(Cookies.get("username")),
             });
             const result = res.data;
             if (result.data) {
                 setPosts(result.data.getPosts);
                 setLoading(false);
             }
+            setNewPost(false);
         };
         fetchData();
-    }, []);
+    }, [newPost]);
     return (
         <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw]">
-            <WritePost />
+            <WritePost name={Cookies.get("name")} setNewPost={setNewPost} />
             <br />
             {loading ? (
                 <h1>Loading posts..</h1>
@@ -41,10 +43,13 @@ export const FeedContainer: React.FC<{}> = () => {
                 posts.map((post, index) => (
                     <Article
                         key={index}
+                        postId={post._id}
                         body={post.body}
                         likes={post.likes}
                         comments={post.comments}
                         username={post.username}
+                        createdAt={post.createdAt}
+                        setNewPost={setNewPost}
                     />
                 ))
             )}

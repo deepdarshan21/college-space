@@ -1,21 +1,14 @@
-export const FETCH_POSTS_QUERY = `
-    {
-        getPosts {
-            body
-            username
-            createdAt
-            likes {
-                username
-                createdAt
-            }
-            comments {
-                username
-                body
-                createdAt
-            }
-        }
+export const FETCH_POSTS_QUERY = (username) => `
+{
+    getPosts(username: "${username}"){
+        _id,
+        body,
+        username,
+        createdAt,
+        likes,
+        comments {username, body, createdAt}
     }
-`;
+}`;
 
 export const FETCH_USER_INFO_FOR_POST = (username) => `
 {
@@ -29,7 +22,8 @@ export const FETCH_USER_INFO_FOR_POST = (username) => `
 export const ADD_POST = (args) => `
 mutation {
     addPost(postInput: {
-        body: "${args}"
+        body: """${args.body}"""
+        topics: [${args.topics}]
     })
 }`;
 
@@ -106,10 +100,54 @@ export const FETCH_USER_NAME = (username) => `
 export const FETCH_POSTS_OF_A_USER = (username) => `
 {
     getPostsOfUser(username: "${username}"){
+        _id
         body,
         username,
         createdAt,
-        likes {username, createdAt},
+        likes,
         comments {username, body, createdAt}
     }
+}`;
+
+export const LIKE_POST = (args) => `
+mutation {
+    likePost(likeInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+    })
+}
+`;
+
+export const COMMENT_POST = (args) => `
+mutation {
+    commentPost(commentInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+        body: """${args.body}"""
+    })
+}`;
+
+export const DELETE_POST = (postId) => `
+mutation{
+    deletePost(postId: "${postId}")
+}`;
+
+export const REPORT_POST = (args) => `
+mutation {
+    reportPost(reportInput: {
+        postId: "${args.postId}",
+        username: "${args.username}",
+    })
+}`;
+
+export const SEARCH_USER = (string) => `
+{
+    searchUser(string: "${string}"){
+        name, username
+    }
+}`;
+
+export const GET_TOPICS = () => `
+{
+    getTopics
 }`;
