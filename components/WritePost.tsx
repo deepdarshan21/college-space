@@ -47,7 +47,7 @@ export const WritePost = (props: WritePostProps) => {
         const res = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
             {
-                query: ADD_POST({ body: writePost, topics: value.map((v) => `"${v}"`) }),
+                query: ADD_POST({ body: writePost, topics: value.map((v: any) => `"${v}"`) }),
             },
             config
         );
