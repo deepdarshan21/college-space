@@ -21,7 +21,7 @@ export const FeedContainer: React.FC<{}> = () => {
     useEffect(() => {
         const fetchData = async () => {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
-                query: FETCH_POSTS_QUERY,
+                query: FETCH_POSTS_QUERY(Cookies.get("username")),
             });
             const result = res.data;
             if (result.data) {

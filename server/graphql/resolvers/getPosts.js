@@ -1,9 +1,9 @@
 const Post = require("./../../models/post");
 const postScore = require("./../../utils/postScore");
 
-module.exports = async () => {
+module.exports = async ({ username }) => {
     const posts = await Post.find();
-    scores = await postScore("shivam");
+    scores = await postScore(username);
     // console.log(scores);
     posts.sort(function (x, y) {
         let i = posts.indexOf(x),

@@ -19,6 +19,11 @@ module.exports = async (username) => {
         score += post.comments.length * 3;
         const diffDays = Math.round(Math.abs((new Date() - post.createdAt) / oneDay));
         score -= diffDays * 2;
+        post.report.map((user)=>{
+            if(user===username){
+                score-=1000;
+            }
+        })
         postScore.push(score);
     });
     return postScore;

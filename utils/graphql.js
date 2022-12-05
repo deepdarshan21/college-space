@@ -1,6 +1,6 @@
-export const FETCH_POSTS_QUERY = `
+export const FETCH_POSTS_QUERY = (username) => `
 {
-    getPosts{
+    getPosts(username: "${username}"){
         _id,
         body,
         username,

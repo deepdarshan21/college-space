@@ -3,7 +3,7 @@ const { buildSchema } = require("graphql");
 module.exports = buildSchema(`
   type Query {
     hello: String
-    getPosts: [Post]
+    getPosts(username: String!): [Post]
     getPost(postId: ID!): Post
     getPostsOfUser(username: String!): [Post]
     getUserInfo(username: String!): UserInfo!
