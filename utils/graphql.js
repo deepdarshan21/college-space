@@ -138,3 +138,10 @@ mutation {
         username: "${args.username}",
     })
 }`;
+
+export const SEARCH_USER = (string) => `
+{
+    searchUser(string: "${string}"){
+        name, username
+    }
+}`;

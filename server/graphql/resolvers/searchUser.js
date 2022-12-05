@@ -6,7 +6,7 @@ module.exports = async (args) => {
         5
     );
     if (userFilter) {
-        userFilter.map((doc) => res.push(doc.name));
+        userFilter.map((doc) => res.push({ name: doc.name, username: doc.username }));
         return res;
     } else return new Error("Some error found");
 };
