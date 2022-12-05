@@ -85,6 +85,7 @@ module.exports = buildSchema(`
   }
   input PostInput {
     body: String!
+    topics: [String]
   }
   input LikeInput{
     postId: ID!

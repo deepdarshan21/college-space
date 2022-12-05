@@ -40,7 +40,11 @@ const postSchema = new mongoose.Schema({
     report: {
         type: Array,
         default: [],
-    }
+    },
+    topics: {
+        type: Array,
+        default: [],
+    },
 });
 
 const Post = new mongoose.model("posts", postSchema);
