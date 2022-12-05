@@ -50,11 +50,11 @@ export const Navbar = () => {
                 <Autocomplete
                     freeSolo
                     filterOptions={(x) => x}
-                    onChange={(e: any) => {
+                    onChange={(e, val) => {
                         setValue(e.target.innerText);
                         // console.log(value);
                         
-                        router.push(`/user/${value}`);
+                        router.push(`/user/${val}`);
                     }}
                     loading
                     // loadingText
