@@ -48,6 +48,7 @@ export const FeedContainer: React.FC<{}> = () => {
                         likes={post.likes}
                         comments={post.comments}
                         username={post.username}
+                        createdAt={post.createdAt}
                         setNewPost={setNewPost}
                     />
                 ))

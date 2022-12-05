@@ -3,6 +3,7 @@ import { AiOutlineLike, AiFillLike, AiOutlineComment, AiFillDelete } from "react
 import { MdOutlineReportProblem } from "react-icons/md";
 import axios from "axios";
 import Cookies from "js-cookie";
+import TimeAgo from "react-timeago";
 
 import {
     FETCH_USER_INFO_FOR_POST,
@@ -20,6 +21,7 @@ type ArticleProps = {
     likes: Array<string>;
     comments: Array<any>;
     username: String;
+    createdAt: string;
     setNewPost: any;
 };
 
@@ -99,12 +101,15 @@ export const Article = (props: ArticleProps) => {
 
     return (
         <div className="w-full bg-white p-4 space-y-4 my-2">
-            <div className="flex space-x-4">
-                <Avatar size={40} />
-                <span className="flex flex-col justify-center">
-                    <div className="text-[16px] font-semibold">{name}</div>
-                    {bio.length > 1 && <div className="text-[14px] text-[#706666]">{bio}</div>}
+            <div className="flex items-center justify-between space-x-4">
+                <span className="flex space-x-4">
+                    <Avatar size={40} />
+                    <span className="flex flex-col justify-center">
+                        <div className="text-[16px] font-semibold">{name}</div>
+                        {bio.length > 1 && <div className="text-[14px] text-[#706666]">{bio}</div>}
+                    </span>
                 </span>
+                <TimeAgo date={new Date(Number(props.createdAt))} />
             </div>
             <div className="text-left break-words ">
                 <pre className="whitespace-pre-wrap">{props.body}</pre>
@@ -176,6 +181,7 @@ export const Article = (props: ArticleProps) => {
                                     key={index}
                                     body={comment.body}
                                     username={comment.username}
+                                    createdAt={comment.createdAt}
                                 />
                             ))}
                     </div>

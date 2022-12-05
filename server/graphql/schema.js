@@ -75,6 +75,7 @@ module.exports = buildSchema(`
     postId: ID!
     body: String!
     username: String!
+    createdAt: String
   }
   type Post {
     _id: String!

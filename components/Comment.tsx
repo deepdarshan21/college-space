@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import TimeAgo from "react-timeago";
 
 import { FETCH_USER_INFO_FOR_POST } from "@/utils/graphql";
 import { Avatar } from "@/components/Avatar";
@@ -7,6 +8,7 @@ import { Avatar } from "@/components/Avatar";
 type CommentProps = {
     body: String;
     username: String;
+    createdAt: sring;
 };
 
 export const Comment = (props: CommentProps) => {
@@ -33,9 +35,12 @@ export const Comment = (props: CommentProps) => {
                 <Avatar size={36} />
             </span>
             <div className="bg-[#e7e4e4] px-4 py-2 w-full rounded-xl">
-                <span className="flex flex-col justify-center pb-3 ">
-                    <div className="text-[16px] font-bold">{name}</div>
-                    {bio.length > 1 && <div className="text-[14px] text-[#706666]">{bio}</div>}
+                <span className="flex justify-between ">
+                    <span className="flex flex-col justify-center pb-3 ">
+                        <div className="text-[16px] font-bold">{name}</div>
+                        {bio.length > 1 && <div className="text-[14px] text-[#706666]">{bio}</div>}
+                    </span>
+                    <TimeAgo date={new Date(Number(props.createdAt))} />
                 </span>
                 <div className="text-left break-words ">
                     <pre className="whitespace-pre-wrap">{props.body}</pre>
