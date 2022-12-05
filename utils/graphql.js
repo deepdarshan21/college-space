@@ -145,3 +145,8 @@ export const SEARCH_USER = (string) => `
         name, username
     }
 }`;
+
+export const GET_TOPICS = () => `
+{
+    getTopics
+}`;
