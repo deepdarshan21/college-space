@@ -47,7 +47,7 @@ export const WritePost = (props: WritePostProps) => {
         const res = await axios.post(
             `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
             {
-                query: ADD_POST(writePost),
+                query: ADD_POST({ body: writePost, topics: value.map((v) => `"${v}"`) }),
             },
             config
         );
@@ -96,14 +96,17 @@ export const WritePost = (props: WritePostProps) => {
                             options={topics.map((option) => option)}
                             onChange={(e, val) => {
                                 e.preventDefault();
+                                console.log(val);
                                 setvalue(val);
+                                console.log(value);
+
                                 //one step behind
                             }}
                             freeSolo
                             renderTags={(value: readonly string[], getTagProps) =>
                                 value.map((option: string, index: number) => (
                                     <Chip
-                                        key={index}
+                                        key={index + 1}
                                         variant="outlined"
                                         label={option}
                                         {...getTagProps({ index })}
