@@ -69,6 +69,19 @@ const userSchema = new mongoose.Schema({
     clubs: {
         type: String,
     },
+    topics: [
+        {
+            topicName: {
+                type: String,
+                required: true,
+            },
+            topicScore: {
+                type: Number,
+                required: true,
+                default: 0,
+            },
+        },
+    ],
 });
 
 const User = new mongoose.model("users", userSchema);

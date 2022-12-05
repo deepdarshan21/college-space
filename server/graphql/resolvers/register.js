@@ -1,4 +1,5 @@
 const User = require("./../../models/users");
+const topics = require("./../../utils/topics");
 const bcrypt = require("bcrypt");
 
 module.exports = async (args) => {
@@ -25,6 +26,7 @@ module.exports = async (args) => {
         email,
         createdAt: new Date(),
         updatedAt: new Date(),
+        topics,
     });
 
     const res = await newUser.save();
