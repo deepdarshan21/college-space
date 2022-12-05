@@ -51,9 +51,9 @@ export const Navbar = () => {
                     freeSolo
                     filterOptions={(x) => x}
                     onChange={(e, val) => {
-                        setValue(e.target.innerText);
+                        setValue(val);
                         // console.log(value);
-                        
+
                         router.push(`/user/${val}`);
                     }}
                     loading
