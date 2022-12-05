@@ -104,14 +104,16 @@ export const WritePost = (props: WritePostProps) => {
                             }}
                             freeSolo
                             renderTags={(value: readonly string[], getTagProps) =>
-                                value.map((option: string, index: number) => (
-                                    <Chip
-                                        key={index + 1}
-                                        variant="outlined"
-                                        label={option}
-                                        {...getTagProps({ index })}
-                                    />
-                                ))
+                                value.map((option: string, index: number) => {
+                                    return (
+                                        <Chip
+                                            key={index}
+                                            variant="outlined"
+                                            label={option}
+                                            {...getTagProps}
+                                        />
+                                    );
+                                })
                             }
                             renderInput={(params) => (
                                 <TextField
