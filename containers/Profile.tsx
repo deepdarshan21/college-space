@@ -125,13 +125,17 @@ export const ProfileContainer: React.FC<{}> = () => {
                             <h6 className="flex-[3] md:flex-[1] font-medium">Role:</h6>
                             {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.role}</p>}
                             {edit && (
-                                <input
-                                    type="text"
+                                <select
                                     name="role"
                                     value={userInfo.role}
                                     onChange={handleInputChange}
-                                    size={50}
-                                />
+                                    className="flex-[7] md:flex-[4]"
+                                >
+                                    <option value="Student">Student</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="College Passout">College Passout</option>
+                                    <option value="Staff Member">Staff Member</option>
+                                </select>
                             )}
                         </span>
                     )}
