@@ -149,7 +149,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="branch"
                                     value={userInfo.branch}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -164,7 +164,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="year"
                                     value={userInfo.year}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -179,7 +179,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="clubs"
                                     value={userInfo.clubs}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -194,7 +194,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="interest"
                                     value={userInfo.interest}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -209,7 +209,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="achivement"
                                     value={userInfo.achivement}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -224,7 +224,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="about"
                                     value={userInfo.about}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
