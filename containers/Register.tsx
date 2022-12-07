@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import PasswordChecklist from "react-password-checklist";
 
 import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { AuthInput } from "@/components/AuthInput";
@@ -17,12 +18,12 @@ export const Register: React.FC<{}> = () => {
     }, [router]);
 
     const [registerInput, setRegisterInput] = useState<{
-        name: String;
-        surname: String;
+        name: string;
+        surname: string;
         email: string;
         username: string;
         password: string;
-        confirmPassword: String;
+        confirmPassword: string;
     }>({
         name: "",
         surname: "",
@@ -153,7 +154,26 @@ export const Register: React.FC<{}> = () => {
                                         isRequired
                                         value={registerInput.password}
                                         onChange={handleInputChange}
+                                        showPassword
+                                        otherProps={{
+                                            pattern:
+                                                "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}",
+                                        }}
                                     />
+                                    {registerInput.password && <span className="[&>*>*]:px-6">
+                                        <PasswordChecklist
+                                            rules={[
+                                                "minLength",
+                                                "specialChar",
+                                                "number",
+                                                "capital",
+                                            ]}
+                                            minLength={8}
+                                            value={registerInput.password}
+                                            // valueAgain={passwordAgain}
+                                            onChange={(isValid) => {}}
+                                        />
+                                    </span>}
                                     <AuthInput
                                         icon={<AiOutlineLock size={24} />}
                                         label="Confirm Password"
@@ -161,8 +181,17 @@ export const Register: React.FC<{}> = () => {
                                         name="confirmPassword"
                                         isRequired
                                         value={registerInput.confirmPassword}
+                                        showPassword
                                         onChange={handleInputChange}
                                     />
+                                    {registerInput.confirmPassword && <span className="[&>*>*]:px-6">
+                                        <PasswordChecklist
+                                            rules={["match"]}
+                                            value={registerInput.confirmPassword}
+                                            valueAgain={registerInput.password}
+                                            onChange={(isValid) => {}}
+                                        />
+                                    </span>}
                                     <div className="flex flex-wrap gap-8">
                                         <button
                                             type="submit"

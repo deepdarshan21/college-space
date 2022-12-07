@@ -163,6 +163,7 @@ export const Login: React.FC<{}> = () => {
                                         name="password"
                                         isRequired
                                         value={loginInput.password}
+                                        showPassword
                                         onChange={handleInputChange}
                                     />
                                     <div className="flex flex-wrap gap-8">
