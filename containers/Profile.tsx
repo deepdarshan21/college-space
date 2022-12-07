@@ -9,7 +9,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
 import { FETCH_USER_INFO, UPDATE_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
-import { ProfilePageJsonLd } from "next-seo";
 
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
@@ -51,6 +50,7 @@ export const ProfileContainer: React.FC<{}> = () => {
     });
     const [posts, setPosts] = useState<Array<any>>([]);
     const [loading, setLoading] = useState(true);
+    const [updateLoading, setUpdateLoading] = useState(false);
     const [newPost, setNewPost] = useState<Boolean>(false);
 
     useEffect(() => {
@@ -79,6 +79,7 @@ export const ProfileContainer: React.FC<{}> = () => {
 
     const handleClick = async () => {
         if (edit) {
+            setUpdateLoading(true);
             const config = {
                 headers: { Authorization: `Bearer ${Cookies.get("token")}` },
             };
@@ -89,6 +90,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                 },
                 config
             );
+            setUpdateLoading(false);
         }
         setEdit(!edit);
     };
@@ -102,6 +104,11 @@ export const ProfileContainer: React.FC<{}> = () => {
                     <p className="text-[1rem]">{userInfo.bio}</p>
                 </div>
             </div>
+            {updateLoading && (
+                <span className="absolute w-full mt-2 flex [&>*]:m-auto z-1000">
+                    <CircularProgress size={64} />
+                </span>
+            )}
             <div className="w-full bg-white px-6 py-4 rounded-xl">
                 <div className="flex justify-between">
                     <h4 className="text-[20px] font-semibold underline mb-6">Details</h4>
