@@ -119,7 +119,7 @@ export const Article = (props: ArticleProps) => {
             <div className="text-left break-words ">
                 <pre className="whitespace-pre-wrap">{props.body}</pre>
             </div>
-            <div>
+            <div className="break-words">
                 {props.topics &&
                     props.topics.map((topic, index) => (
                         <span key={index} className="text-cyan-700 font-semibold pr-2">
