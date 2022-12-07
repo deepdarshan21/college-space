@@ -4,6 +4,7 @@ import axios from "axios";
 import { BiEdit } from "react-icons/bi";
 import { MdDoneAll } from "react-icons/md";
 import Cookies from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
@@ -236,7 +237,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                     Recent Posts
                 </h4>
                 {loading ? (
-                    <h1>Loading posts..</h1>
+                    <CircularProgress />
                 ) : (
                     posts &&
                     posts.map((post, index) => (
