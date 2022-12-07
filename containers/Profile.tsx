@@ -232,7 +232,9 @@ export const ProfileContainer: React.FC<{}> = () => {
                 </div>
             </div>
             <div className="w-full">
-                <h4 className="text-[20px] font-semibold underline mb-6">Recent Posts</h4>
+                <h4 className="text-[20px] font-semibold underline mb-6 pl-4 md:pl-0">
+                    Recent Posts
+                </h4>
                 {loading ? (
                     <h1>Loading posts..</h1>
                 ) : (
