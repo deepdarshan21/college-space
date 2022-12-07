@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { WritePost } from "@/components/WritePost";
 import { Article } from "@/components/Article";
@@ -37,7 +38,7 @@ export const FeedContainer: React.FC<{}> = () => {
             <WritePost name={Cookies.get("name")} setNewPost={setNewPost} />
             <br />
             {loading ? (
-                <h1>Loading posts..</h1>
+                <CircularProgress />
             ) : (
                 posts &&
                 posts.map((post, index) => (

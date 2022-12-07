@@ -4,6 +4,7 @@ import { MdOutlineReportProblem } from "react-icons/md";
 import axios from "axios";
 import Cookies from "js-cookie";
 import TimeAgo from "react-timeago";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
     FETCH_USER_INFO_FOR_POST,
@@ -34,6 +35,7 @@ export const Article = (props: ArticleProps) => {
     const [comment, setComment] = useState("");
     const [noOfLikes, setNoOfLikes] = useState(props.likes.length);
     const [noOfComments, setNoOfComments] = useState(props.comments.length);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,6 +69,7 @@ export const Article = (props: ArticleProps) => {
     };
 
     const postComment = async () => {
+        setLoading(true);
         const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
             query: COMMENT_POST({
                 postId: props.postId,
@@ -77,6 +80,7 @@ export const Article = (props: ArticleProps) => {
         setComment("");
         setShowComment(false);
         setNoOfComments(noOfComments + 1);
+        setLoading(false);
         props.setNewPost(true);
     };
 
@@ -116,11 +120,12 @@ export const Article = (props: ArticleProps) => {
                 <pre className="whitespace-pre-wrap">{props.body}</pre>
             </div>
             <div>
-                {props.topics && props.topics.map((topic, index) => (
-                    <span key={index} className="text-cyan-700 font-semibold pr-2">
-                        #{topic}
-                    </span>
-                ))}
+                {props.topics &&
+                    props.topics.map((topic, index) => (
+                        <span key={index} className="text-cyan-700 font-semibold pr-2">
+                            #{topic}
+                        </span>
+                    ))}
             </div>
             <div>
                 <div className="flex justify-between text-[#706666] text-sm  border-b-2">
@@ -182,6 +187,7 @@ export const Article = (props: ArticleProps) => {
                             Post
                         </button>
                     </div>
+                    {loading && <CircularProgress />}
                     <div className="max-h-72 overflow-y-auto">
                         {props.comments &&
                             props.comments.map((comment, index) => (

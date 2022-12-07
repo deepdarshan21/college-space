@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { AiOutlineMail, AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { AuthInput } from "@/components/AuthInput";
@@ -27,6 +28,7 @@ export const Login: React.FC<{}> = () => {
     });
 
     const [loginWith, setLoginWith] = useState("Email");
+    const [loading, setLoading] = useState<Boolean>(false);
 
     const handleLoginWith = () => {
         loginWith === "Email" ? setLoginWith("Username") : setLoginWith("Email");
@@ -38,6 +40,7 @@ export const Login: React.FC<{}> = () => {
 
     const handleLogin = async (evt: any) => {
         evt.preventDefault();
+        setLoading(true);
 
         try {
             const res = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`, {
@@ -47,11 +50,12 @@ export const Login: React.FC<{}> = () => {
             Cookies.set("username", userData.username, { expires: 7 });
             Cookies.set("name", userData.name, { expires: 7 });
             Cookies.set("token", userData.token, { expires: 7 });
-            alert("Successfully logged in");
+            // alert("Successfully logged in");
             router.push(`/feed`);
+            setLoading(false);
         } catch (err: any) {
             const result = err.response.data;
-
+            setLoading(false);
             if (result?.errors) {
                 alert(result.errors[0].message);
                 return;
@@ -61,6 +65,11 @@ export const Login: React.FC<{}> = () => {
 
     return (
         <div className="w-full h-max absolute top-0 bg-[#F3F2EF]">
+            {loading && (
+                <span className="absolute w-full mt-2 flex [&>*]:m-auto z-1000">
+                    <CircularProgress size={64} />
+                </span>
+            )}
             <nav className="bg-white border-gray-200">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-4">
                     <a href="/" className="flex items-center">

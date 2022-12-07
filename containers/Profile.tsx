@@ -4,11 +4,11 @@ import axios from "axios";
 import { BiEdit } from "react-icons/bi";
 import { MdDoneAll } from "react-icons/md";
 import Cookies from "js-cookie";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { Avatar } from "@/components/Avatar";
 import { Article } from "@/components/Article";
 import { FETCH_USER_INFO, UPDATE_USER_INFO, FETCH_POSTS_OF_A_USER } from "@/utils/graphql";
-import { ProfilePageJsonLd } from "next-seo";
 
 export const ProfileContainer: React.FC<{}> = () => {
     const router = useRouter();
@@ -50,6 +50,7 @@ export const ProfileContainer: React.FC<{}> = () => {
     });
     const [posts, setPosts] = useState<Array<any>>([]);
     const [loading, setLoading] = useState(true);
+    const [updateLoading, setUpdateLoading] = useState(false);
     const [newPost, setNewPost] = useState<Boolean>(false);
 
     useEffect(() => {
@@ -78,6 +79,7 @@ export const ProfileContainer: React.FC<{}> = () => {
 
     const handleClick = async () => {
         if (edit) {
+            setUpdateLoading(true);
             const config = {
                 headers: { Authorization: `Bearer ${Cookies.get("token")}` },
             };
@@ -88,6 +90,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                 },
                 config
             );
+            setUpdateLoading(false);
         }
         setEdit(!edit);
     };
@@ -101,6 +104,11 @@ export const ProfileContainer: React.FC<{}> = () => {
                     <p className="text-[1rem]">{userInfo.bio}</p>
                 </div>
             </div>
+            {updateLoading && (
+                <span className="absolute w-full mt-2 flex [&>*]:m-auto z-1000">
+                    <CircularProgress size={64} />
+                </span>
+            )}
             <div className="w-full bg-white px-6 py-4 rounded-xl">
                 <div className="flex justify-between">
                     <h4 className="text-[20px] font-semibold underline mb-6">Details</h4>
@@ -125,13 +133,17 @@ export const ProfileContainer: React.FC<{}> = () => {
                             <h6 className="flex-[3] md:flex-[1] font-medium">Role:</h6>
                             {!edit && <p className="flex-[7] md:flex-[4]">{userInfo.role}</p>}
                             {edit && (
-                                <input
-                                    type="text"
+                                <select
                                     name="role"
                                     value={userInfo.role}
                                     onChange={handleInputChange}
-                                    size={50}
-                                />
+                                    className="flex-[7] md:flex-[4]"
+                                >
+                                    <option value="Student">Student</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="College Passout">College Passout</option>
+                                    <option value="Staff Member">Staff Member</option>
+                                </select>
                             )}
                         </span>
                     )}
@@ -145,7 +157,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="branch"
                                     value={userInfo.branch}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -160,7 +172,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="year"
                                     value={userInfo.year}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -175,7 +187,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="clubs"
                                     value={userInfo.clubs}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -190,7 +202,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="interest"
                                     value={userInfo.interest}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -205,7 +217,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="achivement"
                                     value={userInfo.achivement}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -220,7 +232,7 @@ export const ProfileContainer: React.FC<{}> = () => {
                                     name="about"
                                     value={userInfo.about}
                                     onChange={handleInputChange}
-                                    size={50}
+                                    className="flex-[7] md:flex-[4]"
                                 />
                             )}
                         </span>
@@ -228,9 +240,11 @@ export const ProfileContainer: React.FC<{}> = () => {
                 </div>
             </div>
             <div className="w-full">
-                <h4 className="text-[20px] font-semibold underline mb-6">Recent Posts</h4>
+                <h4 className="text-[20px] font-semibold underline mb-6 pl-4 md:pl-0">
+                    Recent Posts
+                </h4>
                 {loading ? (
-                    <h1>Loading posts..</h1>
+                    <CircularProgress />
                 ) : (
                     posts &&
                     posts.map((post, index) => (

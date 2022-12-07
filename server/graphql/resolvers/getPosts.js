@@ -17,6 +17,9 @@ module.exports = async ({ username }) => {
         }
         return 0;
     });
-    // return scores
+    posts.map((post) => {
+        post.comments.reverse();
+        return post;
+    });
     return posts;
 };
