@@ -33,7 +33,7 @@ export const FeedContainer: React.FC<{}> = () => {
         fetchData();
     }, [newPost]);
     return (
-        <div className="flex flex-col items-center mx-auto w-[100vw] md:w-[75vw] lg:w-[60vw]">
+        <div className="flex flex-col items-center mx-auto mb-16 lg:mb-0 w-[100vw] md:w-[75vw] lg:w-[60vw]">
             <WritePost name={Cookies.get("name")} setNewPost={setNewPost} />
             <br />
             {loading ? (
