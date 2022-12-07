@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { AiFillHome, AiFillWechat, AiFillCaretDown } from "react-icons/ai";
+import { GiOfficeChair } from "react-icons/gi";
 import { BsBookFill } from "react-icons/bs";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -92,17 +93,6 @@ export const Navbar = () => {
                                 </a>
                             </Link>
                         </li>
-                        {/* <li>
-                            <a
-                                href="#"
-                                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-                            >
-                                <span className="flex flex-col items-center">
-                                    <AiFillWechat size={28} />
-                                    <span>Chat</span>
-                                </span>
-                            </a>
-                        </li> */}
                         <li>
                             <a
                                 href="https://kalexamhai.github.io/"
@@ -113,6 +103,19 @@ export const Navbar = () => {
                                 <span className="flex flex-col items-center">
                                     <BsBookFill size={28} />
                                     <span>Exams😨</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.levels.fyi/still-hiring/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                            >
+                                <span className="flex flex-col items-center">
+                                    <GiOfficeChair size={28} />
+                                    <span>Jobs🤑</span>
                                 </span>
                             </a>
                         </li>
