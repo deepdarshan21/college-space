@@ -84,6 +84,7 @@ module.exports = buildSchema(`
     createdAt: String!
     likes: [String]
     comments: [Comments]
+    topics: [String]
   }
   input PostInput {
     body: String!

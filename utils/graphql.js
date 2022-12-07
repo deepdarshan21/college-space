@@ -7,6 +7,7 @@ export const FETCH_POSTS_QUERY = (username) => `
         createdAt,
         likes,
         comments {username, body, createdAt}
+        topics
     }
 }`;
 

@@ -22,6 +22,7 @@ type ArticleProps = {
     comments: Array<any>;
     username: String;
     createdAt: string;
+    topics: Array<string>;
     setNewPost: any;
 };
 
@@ -113,6 +114,13 @@ export const Article = (props: ArticleProps) => {
             </div>
             <div className="text-left break-words ">
                 <pre className="whitespace-pre-wrap">{props.body}</pre>
+            </div>
+            <div>
+                {props.topics && props.topics.map((topic, index) => (
+                    <span key={index} className="text-cyan-700 font-semibold pr-2">
+                        #{topic}
+                    </span>
+                ))}
             </div>
             <div>
                 <div className="flex justify-between text-[#706666] text-sm  border-b-2">
