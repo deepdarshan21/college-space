@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to College Space 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version- -blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/deepdarshan21" target="_blank">
     <img alt="Twitter: deepdarshan21" src="https://img.shields.io/twitter/follow/deepdarshan21.svg?style=social" />
   </a>
