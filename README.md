@@ -24,10 +24,22 @@ npm run start
 
 ## Screenshots
 
+### Landing Page
 ![Landing Page](./demo/landing%20page.png)
+
+### Login Page
 ![Login Page](./demo/login%20page.png)
+
+### Signup Page
 ![Signup Page](./demo/signup%20page.png)
+
+### Home Page
 ![Home Page](./demo/home%20page.png)
+
+### Create Post
+![Create Post](./demo/create%20post.png)
+
+### Profile Page
 ![Profile Page](./demo/profile%20page.png)
 
 ## Author
