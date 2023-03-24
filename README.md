@@ -8,7 +8,7 @@
 
 > Lets connect everyone within college under one platform, and share daily day to day happening with all the college friends
 
-### ✨ [Demo](https://college-space-smvdu.vercel.app/)
+### ✨ [Live Demo](https://college-space-smvdu.vercel.app/)
 
 ## Install
 
@@ -21,6 +21,14 @@ npm install
 ```sh
 npm run start
 ```
+
+## Screenshots
+
+![Landing Page](./demo/landing%20page.png)
+![Login Page](./demo/login%20page.png)
+![Signup Page](./demo/signup%20page.png)
+![Home Page](./demo/home%20page.png)
+![Profile Page](./demo/profile%20page.png)
 
 ## Author
 
